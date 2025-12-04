@@ -1,0 +1,97 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.requests;
+
+import "rules/rules.proto";
+import "shared/enums/collection_permission_role.proto";
+import "shared/enums/collection_state.proto";
+import "shared/enums/collection_type.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Requests";
+
+message ListCollectionsRequest {
+  repeated shared.v1.enums.DomainOfInfluenceType types = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string bfs = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true, allow_empty: true }];
+  shared.v1.enums.CollectionPeriodState period_state = 3 [(validation.v1.rules).enum = { allow_unspecified: true, exact_enum: true }];
+}
+
+message ListCollectionPermissionsRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message CreateCollectionPermissionRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string last_name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string email = 4 [(validation.v1.rules).string.email = true];
+  shared.v1.enums.CollectionPermissionRole role = 5 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message DeleteCollectionPermissionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ResendCollectionPermissionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message AcceptCollectionPermissionRequest {
+  string token = 1 [(validation.v1.rules).string.regex = "^ut\\.1-[A-Za-z0-9\\-_]+$"];
+}
+
+message RejectCollectionPermissionRequest {
+  string token = 1 [(validation.v1.rules).string.regex = "^ut\\.1-[A-Za-z0-9\\-_]+$"];
+}
+
+message GetPendingCollectionPermissionByTokenRequest {
+  string token = 1 [(validation.v1.rules).string.regex = "^ut\\.1-[A-Za-z0-9\\-_]+$"];
+}
+
+message ListCollectionMessagesRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message AddCollectionMessageRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string content = 2 [(validation.v1.rules).string = {min_length: 1, max_length: 1000, complex_ml_text: true}];
+}
+
+message DeleteCollectionImageRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message DeleteCollectionLogoRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message SetSignatureSheetTemplateGeneratedRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.enums.CollectionType collection_type = 2 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message DeleteSignatureSheetTemplateRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GenerateSignatureSheetTemplatePreviewRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.enums.CollectionType collection_type = 2 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message UpdateRequestInformalReviewRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  bool request_informal_review = 2;
+}
+
+message WithdrawCollectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ValidateCollectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+

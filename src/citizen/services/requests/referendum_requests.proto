@@ -1,0 +1,57 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.requests;
+
+import "citizen/services/models/collection.proto";
+import "rules/rules.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Requests";
+
+message CreateReferendumRequest {
+  string description = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+  string decree_id = 2 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+}
+
+message SetReferendumInPreparationRequest {
+  string referendum_number = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+}
+
+message GetReferendumRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  bool include_is_signed = 3;
+}
+
+message UpdateReferendumRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+  string reason = 3 [(validation.v1.rules).string = { max_length: 10000, complex_ml_text: true, allow_empty: true }];
+  citizen.services.v1.models.CollectionAddress address = 4 [(validation.v1.rules).object.required = true];
+  string members_committee = 5 [(validation.v1.rules).string = { max_length: 1000, complex_ml_text: true, allow_empty: true }];
+  string link = 6 [(validation.v1.rules).string = { max_length: 2000, complex_sl_text: true, allow_empty: true }];
+}
+
+message UpdateReferendumDecreeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string decree_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message SubmitReferendumRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListMyReferendumsRequest {
+}
+
+message ListDecreesEligibleForReferendumRequest {
+  repeated shared.v1.enums.DomainOfInfluenceType types = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true, allow_empty: true }];
+  bool include_referendums = 3;
+}
+
+message SignReferendumRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}

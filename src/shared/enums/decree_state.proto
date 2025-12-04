@@ -1,0 +1,21 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.enums;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Shared.V1.Enums";
+
+enum DecreeState {
+  DECREE_STATE_UNSPECIFIED = 0;
+
+  // Zur Sammlung freigegeben
+  DECREE_STATE_COLLECTION_APPLICABLE = 1;
+
+  // Zustandegekommen
+  DECREE_STATE_ENDED_CAME_ABOUT = 2;
+
+  // Nicht zustandegekommen
+  DECREE_STATE_ENDED_CAME_NOT_ABOUT = 3;
+}

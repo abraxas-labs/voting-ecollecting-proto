@@ -1,0 +1,40 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.requests;
+
+import "google/protobuf/wrappers.proto";
+import "rules/rules.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
+
+message ListDomainOfInfluencesRequest {
+  google.protobuf.BoolValue e_collecting_enabled = 1;
+  repeated shared.v1.enums.DomainOfInfluenceType types = 2 [(validation.v1.rules).enum.exact_enum = true];
+  bool include_children = 3;
+}
+
+message ListDomainOfInfluenceOwnTypesRequest {
+}
+
+message GetDomainOfInfluenceRequest {
+  string bfs = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+}
+
+message UpdateDomainOfInfluenceRequest {
+  string bfs = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  string name = 2 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true }];
+  string street = 3 [(validation.v1.rules).string = { max_length: 150, complex_sl_text: true }];
+  string zip_code = 4 [(validation.v1.rules).string = { max_length: 15, complex_sl_text: true }];
+  string locality = 5 [(validation.v1.rules).string = { max_length: 150, complex_sl_text: true }];
+  string phone = 6 [(validation.v1.rules).string = { allow_empty: true, phone: true }];
+  string email = 7 [(validation.v1.rules).string = { allow_empty: true, email: true }];
+  string webpage = 8 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, complex_sl_text: true }];
+}
+
+message RemoveDomainOfInfluenceLogoRequest {
+  string bfs = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+}

@@ -1,0 +1,64 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "admin/services/models/collection_count.proto";
+import "google/protobuf/timestamp.proto";
+import "rules/rules.proto";
+import "shared/enums/collection_state.proto";
+import "shared/enums/collection_type.proto";
+import "shared/models/file.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message Collection {
+  string id = 1;
+  string description = 2;
+  shared.v1.enums.CollectionType type = 3;
+  string reason = 4;
+  string link = 5;
+  shared.v1.models.File image = 6;
+  shared.v1.models.File logo = 7;
+  bool signature_sheet_template_generated = 8;
+  shared.v1.models.File signature_sheet_template = 9;
+  shared.v1.enums.CollectionState state = 10;
+  admin.services.v1.models.CollectionCount attested_collection_count = 11;
+  CollectionAddress address = 12;
+  bool is_electronic_submission = 13;
+  bool informal_review_requested = 14;
+  CollectionUserPermissions user_permissions = 15;
+  google.protobuf.Timestamp collection_start_date = 16;
+  google.protobuf.Timestamp collection_end_date = 17;
+  shared.v1.enums.CollectionPeriodState period_state = 18;
+}
+
+message CollectionAddress {
+  string committee_or_person = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string street_or_post_office_box = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
+  string zip_code = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true }];
+  string locality = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
+}
+
+message CollectionUserPermissions {
+  bool can_edit = 1;
+  bool is_request_informal_review_visible = 2;
+  bool can_create_messages = 3;
+  bool can_finish_correction = 4;
+  bool can_set_collection_period = 5;
+  bool can_enable = 6;
+  bool can_delete = 7;
+  bool can_delete_withdrawn = 8;
+  bool can_add_signature_sheet = 9;
+  bool can_read_signature_sheets = 10;
+  bool can_check_samples = 11;
+  bool can_submit_signature_sheets = 12;
+  bool can_finish = 13;
+  bool can_generate_documents = 14;
+  bool can_edit_admissibility_decision = 15;
+  bool can_delete_admissibility_decision = 16;
+  bool can_edit_general_information = 17;
+  bool can_return_for_correction = 18;
+}

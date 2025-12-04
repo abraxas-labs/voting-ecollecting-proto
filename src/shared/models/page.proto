@@ -1,0 +1,24 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.models;
+
+import "rules/rules.proto";
+
+message Pageable {
+  // 1 indexed page number
+  int32 page = 1 [(validation.v1.rules).integer = {min_value: 1, max_value: 1000000}];
+  int32 page_size = 2 [(validation.v1.rules).integer = {min_value: 1, max_value: 100}];
+}
+
+message PageInfo {
+  int32 current_page = 1;
+  int32 page_size = 2;
+  int32 total_pages = 3;
+  int32 items_count = 4;
+  int32 total_items_count = 5;
+  bool has_previous_page = 6;
+  bool has_next_page = 7;
+}

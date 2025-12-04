@@ -1,0 +1,20 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.requests;
+
+import "google/protobuf/wrappers.proto";
+import "rules/rules.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Requests";
+
+message ListDomainOfInfluencesRequest {
+  google.protobuf.BoolValue e_collecting_enabled = 1;
+  repeated shared.v1.enums.DomainOfInfluenceType types = 2 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message ListDomainOfInfluenceTypesRequest {
+}

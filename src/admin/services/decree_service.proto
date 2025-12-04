@@ -1,0 +1,27 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1;
+
+import "admin/services/models/second_factor_transaction.proto";
+import "admin/services/requests/decree_requests.proto";
+import "admin/services/responses/decree_responses.proto";
+import "google/protobuf/empty.proto";
+import "shared/models/id_value.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
+
+service DecreeService {
+  rpc List(requests.ListDecreesRequest) returns (responses.ListDecreesResponse);
+  rpc Create(requests.CreateDecreeRequest) returns (shared.v1.models.IdValue);
+  rpc Update(requests.UpdateDecreeRequest) returns (google.protobuf.Empty);
+  rpc DeletePublished(requests.DeletePublishedDecreeRequest) returns (google.protobuf.Empty);
+  rpc CameAbout(requests.CameAboutDecreeRequest) returns (google.protobuf.Empty);
+  rpc CameNotAbout(requests.CameNotAboutDecreeRequest) returns (google.protobuf.Empty);
+
+  rpc PrepareDelete(requests.PrepareDeleteDecreeRequest) returns (models.SecondFactorTransaction);
+  rpc Delete(requests.DeleteDecreeRequest) returns (google.protobuf.Empty);
+  rpc SetSensitiveDataExpiryDate(requests.SetDecreeSensitiveDataExpiryDateRequest) returns (google.protobuf.Empty);
+}

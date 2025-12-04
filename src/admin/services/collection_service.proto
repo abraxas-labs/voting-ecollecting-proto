@@ -1,0 +1,29 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1;
+
+import "admin/services/requests/collection_requests.proto";
+import "admin/services/responses/collection_responses.proto";
+import "google/protobuf/empty.proto";
+import "shared/models/collection_message.proto";
+import "shared/models/id_value.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
+
+service CollectionService {
+  rpc ListMessages(requests.ListCollectionMessagesRequest) returns (responses.ListCollectionMessagesResponse);
+  rpc AddMessage(requests.AddCollectionMessageRequest) returns (shared.v1.models.IdValue);
+  rpc NotifyPreparingForCollection(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc FinishInformalReview(requests.FinishInformalReviewRequest) returns (shared.v1.models.CollectionMessage);
+  rpc ListForDeletion(requests.ListCollectionsForDeletionRequest) returns (responses.ListCollectionsForDeletionResponse);
+  rpc DeleteWithdrawn(requests.DeleteWithdrawnCollectionRequest) returns (google.protobuf.Empty);
+  rpc DeleteImage(requests.DeleteCollectionImageRequest) returns (google.protobuf.Empty);
+  rpc DeleteLogo(requests.DeleteCollectionLogoRequest) returns (google.protobuf.Empty);
+  rpc DeleteSignatureSheetTemplate(requests.DeleteSignatureSheetTemplateRequest) returns (google.protobuf.Empty);
+  rpc ListPermissions(requests.ListCollectionPermissionsRequest) returns (responses.ListCollectionPermissionsResponse);
+  rpc SubmitSignatureSheets(requests.SubmitSignatureSheetsRequest) returns (responses.SubmitSignatureSheetsResponse);
+  rpc SetCommitteeAddress(requests.SetCommitteeAddressRequest) returns (google.protobuf.Empty);
+}

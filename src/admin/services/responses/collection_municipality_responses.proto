@@ -1,0 +1,25 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.responses;
+
+import "admin/services/models/collection_count.proto";
+import "admin/services/models/collection_municipality.proto";
+import "admin/services/models/collection_signature_sheet.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Responses";
+
+message ListCollectionMunicipalitiesResponse {
+  repeated models.CollectionMunicipality municipalities = 1;
+}
+
+message SubmitCollectionMunicipalitySignatureSheetsResponse {
+  models.CollectionMunicipality municipality = 1;
+  models.CollectionCount collection_count = 2;
+}
+
+message ListCollectionMunicipalitySignatureSheetsResponse {
+  repeated models.CollectionSignatureSheet signature_sheets = 1;
+}

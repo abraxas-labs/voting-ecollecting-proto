@@ -1,0 +1,30 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.enums;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Shared.V1.Enums";
+
+enum InitiativeCommitteeMemberApprovalState {
+  INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_UNSPECIFIED = 0;
+
+  // requested signature from the committee member
+  INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_REQUESTED = 1;
+
+  // committee member has either uploaded a committee list
+  // or a initiative owner/deputy has uploaded a committee list
+  // The signed state is skipped if the committee member has approved himself with AGOV 400
+  INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_SIGNED = 2;
+
+  // committee member has rejected the signature to approve the membership
+  INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_SIGNATURE_REJECTED = 3;
+
+  // committee member has been approved by the government admin
+  // or the committee member has approved himself with AGOV 400 (SIGNED is skipped in this case)
+  INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_APPROVED = 4;
+
+  // committee member has been rejected by the government admin
+  INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_REJECTED = 5;
+}

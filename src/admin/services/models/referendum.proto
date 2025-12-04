@@ -1,0 +1,25 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "admin/services/models/collection.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message Referendum {
+  string id = 1;
+  SimpleDecree decree = 2;
+  string members_committee = 3;
+  admin.services.v1.models.Collection collection = 4;
+  string number = 5;
+}
+
+message SimpleDecree {
+  string id = 1;
+  string description = 2;
+  int32 min_signature_count = 3;
+  int32 max_electronic_signature_count = 4;
+}

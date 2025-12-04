@@ -1,0 +1,18 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.models;
+
+import "google/protobuf/timestamp.proto";
+import "shared/enums/collection_type.proto";
+
+message CollectionMessage {
+  string id = 1;
+  string collection_id = 2;
+  shared.v1.enums.CollectionType collection_type = 3;
+  google.protobuf.Timestamp created_at = 4;
+  string created_by_name = 5;
+  string content = 6;
+}

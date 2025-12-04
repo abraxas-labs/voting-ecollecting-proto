@@ -1,0 +1,20 @@
+# ts
+node_modules/
+/build/angular/src/grpc-gen
+/build/angular/src/public_api.ts
+/build/angular/admin/src/public_api.ts
+/build/angular/admin/src/services/
+/build/angular/citizen/src/public_api.ts
+/build/angular/citizen/src/services/
+/build/angular/dist
+/build/angular/bin
+
+# dotnet
+bin/
+obj/
+
+# Visual Studio  cache/options directory
+.vs/
+
+# generated docs
+/docs/

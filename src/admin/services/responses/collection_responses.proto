@@ -1,0 +1,30 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.responses;
+
+import "admin/services/models/collection.proto";
+import "admin/services/models/collection_group.proto";
+import "admin/services/models/collection_permission.proto";
+import "shared/models/collection_message.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Responses";
+
+message ListCollectionMessagesResponse {
+  repeated shared.v1.models.CollectionMessage messages = 1;
+  bool informal_review_requested = 2;
+}
+
+message ListCollectionsForDeletionResponse {
+  repeated admin.services.v1.models.CollectionsGroup groups = 1;
+}
+
+message ListCollectionPermissionsResponse {
+  repeated admin.services.v1.models.CollectionPermission permissions = 1;
+}
+
+message SubmitSignatureSheetsResponse {
+  admin.services.v1.models.CollectionUserPermissions user_permissions = 1;
+}

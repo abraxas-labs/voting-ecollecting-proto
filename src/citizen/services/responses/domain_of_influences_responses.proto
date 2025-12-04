@@ -1,0 +1,19 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.responses;
+
+import "citizen/services/models/domain_of_influence.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Responses";
+
+message ListDomainOfInfluencesResponse {
+  repeated citizen.v1.models.DomainOfInfluence domain_of_influences = 1;
+}
+
+message ListDomainOfInfluenceTypesResponse {
+  repeated shared.v1.enums.DomainOfInfluenceType domain_of_influence_types = 1;
+}

@@ -1,0 +1,22 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.models;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
+
+enum AccessibilitySalutation {
+  ACCESSIBILITY_SALUTATION_UNSPECIFIED = 0;
+  ACCESSIBILITY_SALUTATION_MR = 1;
+  ACCESSIBILITY_SALUTATION_MRS = 2;
+}
+
+enum AccessibilityCategory {
+  ACCESSIBILITY_CATEGORY_UNSPECIFIED = 0;
+  ACCESSIBILITY_CATEGORY_PROBLEM = 1;
+  ACCESSIBILITY_CATEGORY_OPTIMISATION_PROPOSAL = 2;
+  ACCESSIBILITY_CATEGORY_REQUEST = 3;
+  ACCESSIBILITY_CATEGORY_VARIOUS = 4;
+}

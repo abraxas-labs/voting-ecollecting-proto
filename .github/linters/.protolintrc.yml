@@ -1,0 +1,6 @@
+lint:
+  rules:
+    all_default: false
+  rules_option:
+    max_line_length:
+      max_chars: 160

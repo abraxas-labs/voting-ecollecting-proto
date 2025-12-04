@@ -1,0 +1,27 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message Certificate {
+  string id = 1;
+  string label = 2;
+  bool active = 3;
+  google.protobuf.Timestamp imported_at = 4;
+  string imported_by_name = 5;
+  CertificateInfo info = 6;
+  CertificateInfo ca_info = 7;
+}
+
+message CertificateInfo {
+  google.protobuf.Timestamp not_before = 1;
+  google.protobuf.Timestamp not_after = 2;
+  string thumbprint = 3;
+  string subject = 4;
+}

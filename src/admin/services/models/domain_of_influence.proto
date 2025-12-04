@@ -1,0 +1,38 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "shared/enums/domain_of_influence.proto";
+import "shared/models/file.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message DomainOfInfluence {
+  string bfs = 1;
+  string name = 2;
+  shared.v1.enums.DomainOfInfluenceType type = 3;
+  DomainOfInfluenceSettings settings = 4;
+  DomainOfInfluenceAddress address = 5;
+  string phone = 6;
+  string email = 7;
+  string webpage = 8;
+  shared.v1.models.File logo = 9;
+}
+
+message DomainOfInfluenceSettings {
+  int32 initiative_min_signature_count = 1;
+  int32 initiative_max_electronic_signature_percent = 2;
+  int32 initiative_number_of_members_committee = 3;
+  int32 referendum_min_signature_count = 4;
+  int32 referendum_max_electronic_signature_percent = 5;
+  bool e_collecting_enabled = 6;
+}
+
+message DomainOfInfluenceAddress {
+  string street = 1;
+  string zip_code = 2;
+  string locality = 3;
+}

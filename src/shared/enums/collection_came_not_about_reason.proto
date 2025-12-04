@@ -1,0 +1,14 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.enums;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Shared.V1.Enums";
+
+enum CollectionCameNotAboutReason {
+  COLLECTION_CAME_NOT_ABOUT_REASON_UNSPECIFIED = 0;
+  COLLECTION_CAME_NOT_ABOUT_REASON_MIN_SIGNATURE_COUNT_NOT_REACHED = 1;
+  COLLECTION_CAME_NOT_ABOUT_REASON_NO_SIGNATURE_SHEET_UPLOADED = 2;
+}

@@ -1,0 +1,45 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1;
+
+import "admin/services/models/collection_signature_sheet.proto";
+import "admin/services/requests/collection_signature_sheet_requests.proto";
+import "admin/services/responses/collection_signature_sheet_responses.proto";
+import "google/protobuf/empty.proto";
+import "shared/models/id_value.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
+
+service CollectionSignatureSheetService {
+  rpc List(requests.ListSignatureSheetsRequest) returns (responses.ListSignatureSheetsResponse);
+  rpc ListAttestedAt(requests.ListSignatureSheetsAttestedAtRequest) returns (responses.ListSignatureSheetsAttestedAtResponse);
+  rpc Get(requests.GetSignatureSheetRequest) returns (admin.services.v1.models.CollectionSignatureSheet);
+  rpc ReserveNumber(requests.ReserveSignatureSheetNumberRequest) returns (responses.ReserveSignatureSheetNumberResponse);
+  rpc TryReleaseNumber(requests.TryReleaseSignatureSheetNumberRequest) returns (google.protobuf.Empty);
+  rpc Add(requests.AddSignatureSheetRequest) returns (shared.v1.models.IdValue);
+  rpc Update(requests.UpdateSignatureSheetRequest) returns (google.protobuf.Empty);
+  rpc Delete(requests.DeleteSignatureSheetRequest) returns (google.protobuf.Empty);
+  rpc Submit(requests.SubmitSignatureSheetRequest) returns (responses.SubmitSignatureSheetResponse);
+
+  // reverts submission and sets state from submitted to attested
+  rpc Unsubmit(requests.UnsubmitSignatureSheetRequest) returns (responses.UnsubmitSignatureSheetResponse);
+
+  // set state from attested to not submitted
+  rpc Discard(requests.DiscardSignatureSheetRequest) returns (responses.DiscardSignatureSheetResponse);
+
+  // reverts discard and sets state from not submitted to attested
+  rpc Restore(requests.RestoreSignatureSheetRequest) returns (responses.RestoreSignatureSheetResponse);
+  rpc Confirm(requests.ConfirmSignatureSheetRequest) returns (responses.ConfirmSignatureSheetResponse);
+
+  // searches for persons to be added to the signature sheet
+  rpc SearchPersonCandidates(requests.SearchSignatureSheetPersonCandidatesRequest) returns (responses.SearchSignatureSheetPersonCandidatesResponse);
+  rpc AddCitizen(requests.AddSignatureSheetCitizenRequest) returns (google.protobuf.Empty);
+  rpc RemoveCitizen(requests.RemoveSignatureSheetCitizenRequest) returns (google.protobuf.Empty);
+  rpc ListCitizens(requests.ListSignatureSheetCitizensRequest) returns (responses.ListSignatureSheetCitizensResponse);
+
+  rpc ListSamples(requests.ListSignatureSheetSamplesRequest) returns (responses.ListSignatureSheetSamplesResponse);
+  rpc AddSamples(requests.AddSignatureSheetSamplesRequest) returns (responses.AddSignatureSheetSamplesResponse);
+}

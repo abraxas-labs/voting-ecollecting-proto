@@ -1,0 +1,19 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.responses;
+
+import "admin/services/models/certificate.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Responses";
+
+message ListCertificatesResponse {
+  repeated models.Certificate certificates = 1;
+}
+
+message GetActiveCertificateResponse {
+  models.Certificate active_certificate = 1;
+  models.CertificateInfo ca_certificate = 2;
+}

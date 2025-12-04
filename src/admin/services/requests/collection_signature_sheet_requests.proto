@@ -1,0 +1,140 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.requests;
+
+import "admin/services/models/collection_signature_sheet.proto";
+import "google/protobuf/timestamp.proto";
+import "rules/rules.proto";
+import "shared/enums/collection_type.proto";
+import "shared/enums/sort.proto";
+import "shared/models/page.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
+
+message ListSignatureSheetsRequest {
+  shared.v1.models.Pageable pageable = 1; // Optional pageable for pagination, if not provided, all sheets are returned
+  string collection_id = 2 [(validation.v1.rules).string.guid = true];
+  repeated admin.services.v1.models.CollectionSignatureSheetState states = 3 [(validation.v1.rules).enum.exact_enum = true];
+  repeated google.protobuf.Timestamp attested_ats = 4; // optional attested_at filter, if none is provided, this filter is ignored
+  ListSignatureSheetsSort sort = 5 [(validation.v1.rules).enum = {allow_unspecified: true, exact_enum: true}];
+  shared.v1.enums.SortDirection sort_direction = 6 [(validation.v1.rules).enum = {allow_unspecified: true, exact_enum: true}];
+}
+
+message ListSignatureSheetsAttestedAtRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GetSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message ReserveSignatureSheetNumberRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message TryReleaseSignatureSheetNumberRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  int32 number = 2 [(validation.v1.rules).integer.min_value = 1];
+}
+
+message AddSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  int32 number = 2 [(validation.v1.rules).integer.min_value = 1];
+  google.protobuf.Timestamp received_at = 3 [(validation.v1.rules).object.required = true];
+  int32 signature_count_total = 4 [(validation.v1.rules).integer.min_value = 1];
+}
+
+message UpdateSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp received_at = 3 [(validation.v1.rules).object.required = true];
+  int32 signature_count_total = 4 [(validation.v1.rules).integer.min_value = 1];
+}
+
+message DeleteSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message SubmitSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message UnsubmitSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message DiscardSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message RestoreSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message ConfirmSignatureSheetRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+  shared.v1.enums.CollectionType collection_type = 3 [(validation.v1.rules).enum.exact_enum = true];
+  repeated string added_person_register_ids = 5 [(validation.v1.rules).string.guid = true];
+  repeated string removed_person_register_ids = 6 [(validation.v1.rules).string.guid = true];
+  int32 signature_count_total = 7 [(validation.v1.rules).integer.min_value = 1];
+}
+
+message SearchSignatureSheetPersonCandidatesRequest {
+  shared.v1.models.Pageable pageable = 1;
+  shared.v1.enums.CollectionType collection_type = 2 [(validation.v1.rules).enum.exact_enum = true];
+  string collection_id = 3 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 4 [(validation.v1.rules).string.guid = true];
+  string official_name = 5 [(validation.v1.rules).string = { min_length: 2, max_length: 100, allow_empty: true, complex_sl_text: true }];
+  string first_name = 6 [(validation.v1.rules).string = { min_length: 2, max_length: 100, allow_empty: true, complex_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 7;
+  string residence_address_street = 8 [(validation.v1.rules).string = { min_length: 2, max_length: 150, allow_empty: true, complex_sl_text: true }];
+  string residence_address_house_number = 9 [(validation.v1.rules).string = { max_length: 150, allow_empty: true, complex_sl_text: true }];
+}
+
+message AddSignatureSheetCitizenRequest {
+  shared.v1.enums.CollectionType collection_type = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string collection_id = 2 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 3 [(validation.v1.rules).string.guid = true];
+  string person_register_id = 4 [(validation.v1.rules).string.guid = true];
+}
+
+message RemoveSignatureSheetCitizenRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
+  string person_register_id = 3 [(validation.v1.rules).string.guid = true];
+}
+
+message ListSignatureSheetCitizensRequest {
+  string collection_id = 2 [(validation.v1.rules).string.guid = true];
+  string signature_sheet_id = 3 [(validation.v1.rules).string.guid = true];
+}
+
+message ListSignatureSheetSamplesRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message AddSignatureSheetSamplesRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  int32 signature_sheets_count = 2 [(validation.v1.rules).integer.min_value = 1];
+}
+
+enum ListSignatureSheetsSort {
+  LIST_SIGNATURE_SHEETS_SORT_UNSPECIFIED = 0;
+  LIST_SIGNATURE_SHEETS_SORT_NUMBER = 1;
+  LIST_SIGNATURE_SHEETS_SORT_DATE = 2;
+  LIST_SIGNATURE_SHEETS_SORT_MODIFIED_OR_CREATED_BY_NAME = 3;
+  LIST_SIGNATURE_SHEETS_SORT_ATTESTED_AT = 4;
+  LIST_SIGNATURE_SHEETS_SORT_COUNT_TOTAL = 5;
+  LIST_SIGNATURE_SHEETS_SORT_COUNT_VALID = 6;
+  LIST_SIGNATURE_SHEETS_SORT_COUNT_INVALID = 7;
+}

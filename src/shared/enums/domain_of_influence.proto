@@ -1,0 +1,15 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.enums;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Shared.V1.Enums";
+
+enum DomainOfInfluenceType {
+  DOMAIN_OF_INFLUENCE_TYPE_UNSPECIFIED = 0;
+  DOMAIN_OF_INFLUENCE_TYPE_CH = 1;
+  DOMAIN_OF_INFLUENCE_TYPE_CT = 2;
+  DOMAIN_OF_INFLUENCE_TYPE_MU = 3;
+}

@@ -1,0 +1,139 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.requests;
+
+import "admin/services/models/collection.proto";
+import "admin/services/models/initiative.proto";
+import "google/protobuf/timestamp.proto";
+import "rules/rules.proto";
+import "shared/enums/collection_came_not_about_reason.proto";
+import "shared/enums/collection_state.proto";
+import "shared/enums/domain_of_influence.proto";
+import "shared/models/date.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
+
+message ListInitiativeSubTypesRequest {
+}
+
+message ListInitiativesRequest {
+  repeated shared.v1.enums.DomainOfInfluenceType types = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true, allow_empty: true }];
+}
+
+message GetInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ReturnInitiativeForCorrectionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  admin.services.v1.models.InitiativeLockedFields locked_fields = 2;
+}
+
+message FinishCorrectionInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message SetCollectionPeriodInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp collection_start_date = 2 [(validation.v1.rules).object.required = true];
+  google.protobuf.Timestamp collection_end_date = 3 [(validation.v1.rules).object.required = true];
+}
+
+message EnableInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  google.protobuf.Timestamp collection_start_date = 2;
+  google.protobuf.Timestamp collection_end_date = 3;
+}
+
+message GetInitiativeCommitteeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ResetCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message VerifyCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message ApproveCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message RejectCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message CameAboutInitiativeRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.models.Date sensitive_data_expiry_date = 2 [(validation.v1.rules).object.required = true];
+}
+
+message UpdateInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string sub_type_id = 2 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  string description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+  string wording = 4 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, complex_ml_text: true }];
+  admin.services.v1.models.CollectionAddress address = 5;
+}
+
+message CameNotAboutInitiativeRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.enums.CollectionCameNotAboutReason reason = 2 [(validation.v1.rules).enum.exact_enum = true];
+  shared.v1.models.Date sensitive_data_expiry_date = 3 [(validation.v1.rules).object.required = true];
+}
+
+message ListEligibleForAdmissibilityDecisionRequest {
+}
+
+message ListAdmissibilityDecisionsRequest {
+}
+
+message DeleteAdmissibilityDecisionRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message CreateLinkedAdmissibilityDecisionRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string government_decision_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  admin.services.v1.models.AdmissibilityDecisionState admissibility_decision_state = 3 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message CreateInitiativeWithAdmissibilityDecisionRequest {
+  shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string sub_type_id = 2 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  string description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+  string wording = 4 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, complex_ml_text: true }];
+  admin.services.v1.models.CollectionAddress address = 5;
+  string government_decision_number = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  admin.services.v1.models.AdmissibilityDecisionState admissibility_decision_state = 7 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message UpdateAdmissibilityDecisionRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  admin.services.v1.models.AdmissibilityDecisionState admissibility_decision_state = 2 [(validation.v1.rules).enum.exact_enum = true];
+  string government_decision_number = 3 [(validation.v1.rules).string = { allow_empty: true, max_length: 50, simple_sl_text: true }];
+}
+
+message SetInitiativeSensitiveDataExpiryDateRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.models.Date sensitive_data_expiry_date = 2 [(validation.v1.rules).object.required = true];
+}
+
+message PrepareDeleteInitiativeRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message DeleteInitiativeRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string second_factor_transaction_id = 2 [(validation.v1.rules).string = { guid: true }];
+}

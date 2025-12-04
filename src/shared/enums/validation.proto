@@ -1,0 +1,18 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.enums;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Shared.V1.Enums";
+
+enum Validation {
+  VALIDATION_UNSPECIFIED = 0;
+  VALIDATION_GENERAL_INFORMATION_NOT_NULL = 1;
+  VALIDATION_HAS_DEPUTY_PERMISSIONS = 2;
+  VALIDATION_DECREE_NOT_NULL = 3;
+  VALIDATION_APPROVED_COMMITTEE_MEMBERS_MIN_VALID = 4;
+  VALIDATION_APPROVED_COMMITTEE_MEMBERS_MAX_VALID = 5;
+  VALIDATION_COMMITTEE_LIST_UPLOADED = 6;
+}

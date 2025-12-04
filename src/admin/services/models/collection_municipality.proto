@@ -1,0 +1,27 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "admin/services/models/collection_signature_sheet.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message CollectionMunicipality {
+  string bfs = 1;
+  string municipality_name = 2;
+  CollectionSignatureSheetCount physical_count = 3;
+  int32 total_valid_citizen_count = 4;
+  int32 electronic_citizen_count = 5;
+  bool is_locked = 6;
+  CollectionMunicipalitySignatureSheetsCount signature_sheets_count = 7;
+}
+
+message CollectionMunicipalitySignatureSheetsCount {
+  int32 total_signature_sheets_count = 1;
+  int32 total_submitted_or_confirmed_signature_sheets_count = 2;
+  int32 total_not_submitted_signature_sheets_count = 3;
+  int32 total_confirmed_signature_sheets_count = 4;
+}

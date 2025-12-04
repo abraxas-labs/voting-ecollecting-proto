@@ -1,0 +1,21 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1;
+
+import "admin/services/requests/collection_municipality_requests.proto";
+import "admin/services/responses/collection_municipality_responses.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
+
+service CollectionMunicipalityService {
+  rpc List(requests.ListCollectionMunicipalitiesRequest) returns (responses.ListCollectionMunicipalitiesResponse);
+  rpc Unlock(requests.UnlockCollectionMunicipalityRequest) returns (google.protobuf.Empty);
+  rpc Lock(requests.LockCollectionMunicipalityRequest) returns (google.protobuf.Empty);
+  rpc SubmitSignatureSheets(requests.SubmitCollectionMunicipalitySignatureSheetsRequest)
+    returns (responses.SubmitCollectionMunicipalitySignatureSheetsResponse);
+  rpc ListSignatureSheets(requests.ListCollectionMunicipalitySignatureSheetsRequest) returns (responses.ListCollectionMunicipalitySignatureSheetsResponse);
+}

@@ -1,0 +1,15 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.shared.v1.enums;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Shared.V1.Enums";
+
+enum CollectionPermissionRole {
+  COLLECTION_PERMISSION_ROLE_UNSPECIFIED = 0;
+  COLLECTION_PERMISSION_ROLE_READER = 1;
+  COLLECTION_PERMISSION_ROLE_DEPUTY = 2;
+  COLLECTION_PERMISSION_ROLE_OWNER = 3;
+}

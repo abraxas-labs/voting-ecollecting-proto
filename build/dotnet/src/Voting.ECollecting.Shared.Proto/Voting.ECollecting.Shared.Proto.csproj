@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Voting.ECollecting.Shared.Proto</PackageId>
+    <Title>Voting.ECollecting.Shared.Proto Protofiles</Title>
+    <Description>Abraxas Project with shared protofiles for Voting.ECollecting</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../../../src/shared/**/*.proto" ProtoRoot="../../../../src" AdditionalImportDirs="../../../../src;$(PkgVoting_Lib_Validation_Proto)/content/proto" />
+  </ItemGroup>
+
+</Project>

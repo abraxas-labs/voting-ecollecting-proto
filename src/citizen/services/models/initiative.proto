@@ -1,0 +1,77 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.models;
+
+import "citizen/services/models/collection.proto";
+import "google/protobuf/timestamp.proto";
+import "shared/enums/collection_came_not_about_reason.proto";
+import "shared/enums/collection_permission_role.proto";
+import "shared/enums/domain_of_influence.proto";
+import "shared/enums/initiative_committee_member_approval_state.proto";
+import "shared/enums/initiative_committee_member_signature_type.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
+
+message Initiative {
+  string id = 1;
+  shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 2;
+  string bfs = 3;
+  int32 min_signature_count = 4;
+  int32 max_electronic_signature_count = 5;
+  string wording = 6;
+  citizen.services.v1.models.Collection collection = 7;
+  InitiativeSubType sub_type = 8;
+  string government_decision_number = 9;
+
+  // the descriptive version of all committee members
+  // a joined string of all committee members' names, duties, and residences
+  string committee_description = 10;
+  shared.v1.enums.CollectionCameNotAboutReason came_not_about_reason = 11;
+  InitiativeLockedFields locked_fields = 12;
+}
+
+message InitiativeSubType {
+  string id = 1;
+  shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 2;
+  string description = 3;
+  int32 min_signature_count = 4;
+  int32 max_electronic_signature_count = 5;
+}
+
+message InitiativeCommittee {
+  repeated citizen.services.v1.models.CollectionFile committee_lists = 1;
+  repeated InitiativeCommitteeMember committee_members = 2;
+  bool approved_members_count_ok = 3;
+  int32 approved_members_count = 4;
+  int32 total_members_count = 5;
+  int32 required_approved_members_count = 6;
+}
+
+message InitiativeCommitteeMember {
+  string id = 1;
+  string first_name = 2;
+  string political_first_name = 3;
+  string last_name = 4;
+  string political_last_name = 5;
+  google.protobuf.Timestamp date_of_birth = 6;
+  string bfs = 7;
+  string residence = 8;
+  string political_bfs = 9;
+  string political_residence = 10;
+  string email = 11;
+  string political_duty = 12;
+  bool member_signature_requested = 13;
+  shared.v1.enums.InitiativeCommitteeMemberApprovalState approval_state = 14;
+  shared.v1.enums.InitiativeCommitteeMemberSignatureType signature_type = 15;
+  shared.v1.enums.CollectionPermissionRole role = 16;
+  bool can_edit = 17;
+}
+
+message InitiativeLockedFields {
+  bool wording = 1;
+  bool description = 2;
+  bool committee_members = 3;
+}

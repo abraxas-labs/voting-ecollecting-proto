@@ -1,0 +1,65 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.requests;
+
+import "admin/services/enums/collection_control_sign_filter.proto";
+import "admin/services/models/collection.proto";
+import "rules/rules.proto";
+import "shared/enums/collection_type.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
+
+message ListCollectionMessagesRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message AddCollectionMessageRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string content = 2 [(validation.v1.rules).string = {min_length: 1, max_length: 1000, complex_ml_text: true}];
+}
+
+message FinishInformalReviewRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListCollectionsForDeletionRequest {
+  repeated shared.v1.enums.DomainOfInfluenceType types = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true, allow_empty: true }];
+  admin.services.v1.enums.CollectionControlSignFilter filter = 3 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message DeleteWithdrawnCollectionRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message DeleteCollectionImageRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.enums.CollectionType collection_type = 2 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message DeleteCollectionLogoRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.enums.CollectionType collection_type = 2 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message DeleteSignatureSheetTemplateRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  shared.v1.enums.CollectionType collection_type = 2 [(validation.v1.rules).enum.exact_enum = true];
+}
+
+message ListCollectionPermissionsRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message SubmitSignatureSheetsRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message SetCommitteeAddressRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  admin.services.v1.models.CollectionAddress address = 2 [(validation.v1.rules).object.required = true];
+}

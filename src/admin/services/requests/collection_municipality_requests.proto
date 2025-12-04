@@ -1,0 +1,34 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.requests;
+
+import "rules/rules.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
+
+message ListCollectionMunicipalitiesRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message UnlockCollectionMunicipalityRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true }];
+}
+
+message LockCollectionMunicipalityRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true }];
+}
+
+message SubmitCollectionMunicipalitySignatureSheetsRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true }];
+}
+
+message ListCollectionMunicipalitySignatureSheetsRequest {
+  string collection_id = 1 [(validation.v1.rules).string.guid = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true }];
+}

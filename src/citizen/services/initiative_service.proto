@@ -1,0 +1,40 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1;
+
+import "citizen/services/models/initiative.proto";
+import "citizen/services/requests/initiative_requests.proto";
+import "citizen/services/responses/initiative_responses.proto";
+import "google/protobuf/empty.proto";
+import "shared/models/id_value.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1";
+
+service InitiativeService {
+  // Lists all initiatives for which the current user has permissions.
+  rpc ListMy(requests.ListMyInitiativesRequest) returns (responses.ListInitiativesResponse);
+  rpc ListSubTypes(requests.ListInitiativeSubTypesRequest) returns (responses.ListInitiativeSubTypesResponse);
+  rpc Create(requests.CreateInitiativeRequest) returns (shared.v1.models.IdValue);
+  rpc SetInPreparation(requests.SetInitiativeInPreparationRequest) returns (shared.v1.models.IdValue);
+  rpc Get(requests.GetInitiativeRequest) returns (citizen.services.v1.models.Initiative);
+  rpc Update(requests.UpdateInitiativeRequest) returns (google.protobuf.Empty);
+  rpc Submit(requests.SubmitInitiativeRequest) returns (google.protobuf.Empty);
+  rpc FlagForReview(requests.FlagInitiativeForReviewRequest) returns (google.protobuf.Empty);
+  rpc Register(requests.RegisterInitiativeRequest) returns (google.protobuf.Empty);
+
+  rpc GetCommittee(requests.GetInitiativeCommitteeRequest) returns (citizen.services.v1.models.InitiativeCommittee);
+  rpc AddCommitteeMember(requests.AddCommitteeMemberRequest) returns (shared.v1.models.IdValue);
+  rpc DeleteCommitteeMember(requests.DeleteCommitteeMemberRequest) returns (google.protobuf.Empty);
+  rpc UpdateCommitteeMemberSort(requests.UpdateCommitteeMemberSortRequest) returns (google.protobuf.Empty);
+  rpc UpdateCommitteeMember(requests.UpdateCommitteeMemberRequest) returns (google.protobuf.Empty);
+  rpc ResendCommitteeMemberInvitation(requests.ResendCommitteeMemberInvitationRequest) returns (google.protobuf.Empty);
+  rpc GetPendingCommitteeMembershipByToken(requests.GetPendingCommitteeMembershipByTokenRequest) returns (responses.GetPendingCommitteeMemberResponse);
+  rpc AcceptCommitteeMembershipByToken(requests.AcceptCommitteeMembershipRequest) returns (responses.AcceptCommitteeMembershipResponse);
+  rpc RejectCommitteeMembershipByToken(requests.RejectCommitteeMembershipRequest) returns (google.protobuf.Empty);
+  rpc DeleteCommitteeList(requests.DeleteCommitteeListRequest) returns (google.protobuf.Empty);
+
+  rpc Sign(requests.SignInitiativeRequest) returns (google.protobuf.Empty);
+}

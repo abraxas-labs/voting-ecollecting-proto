@@ -1,0 +1,15 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1;
+
+import "citizen/services/requests/accessibility_requests.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1";
+
+service AccessibilityService {
+  rpc SendMessage(requests.SendAccessibilityMessageRequest) returns (google.protobuf.Empty);
+}

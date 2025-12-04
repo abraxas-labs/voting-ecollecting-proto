@@ -1,0 +1,14 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.responses;
+
+import "admin/services/models/decree.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Responses";
+
+message ListDecreesResponse {
+  repeated admin.services.v1.models.Decree decrees = 1;
+}

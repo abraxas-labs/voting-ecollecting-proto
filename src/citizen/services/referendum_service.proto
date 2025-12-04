@@ -1,0 +1,31 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1;
+
+import "citizen/services/models/referendum.proto";
+import "citizen/services/requests/referendum_requests.proto";
+import "citizen/services/responses/referendum_responses.proto";
+import "google/protobuf/empty.proto";
+import "shared/models/id_value.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1";
+
+service ReferendumService {
+  rpc Create(requests.CreateReferendumRequest) returns (shared.v1.models.IdValue);
+  rpc SetInPreparation(requests.SetReferendumInPreparationRequest) returns (shared.v1.models.IdValue);
+  rpc Get(requests.GetReferendumRequest) returns (citizen.services.v1.models.Referendum);
+  rpc Update(requests.UpdateReferendumRequest) returns (google.protobuf.Empty);
+  rpc UpdateDecree(requests.UpdateReferendumDecreeRequest) returns (google.protobuf.Empty);
+  rpc Submit(requests.SubmitReferendumRequest) returns (google.protobuf.Empty);
+
+  // Lists all referendums for which the current user has permissions.
+  rpc ListMy(requests.ListMyReferendumsRequest) returns (responses.ListMyReferendumsResponse);
+
+  // Lists all decrees which are eligible for a referendum, and optionally all related collections the current user has permissions.
+  rpc ListDecreesEligibleForReferendum(requests.ListDecreesEligibleForReferendumRequest) returns (responses.ListDecreesEligibleForReferendumResponse);
+
+  rpc Sign(requests.SignReferendumRequest) returns (google.protobuf.Empty);
+}

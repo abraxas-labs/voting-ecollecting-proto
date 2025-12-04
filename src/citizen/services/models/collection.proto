@@ -1,0 +1,75 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.models;
+
+import "citizen/services/models/collection_count.proto";
+import "google/protobuf/timestamp.proto";
+import "rules/rules.proto";
+import "shared/enums/collection_permission_role.proto";
+import "shared/enums/collection_state.proto";
+import "shared/enums/collection_type.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
+
+message Collection {
+  string id = 1;
+  string description = 2;
+  shared.v1.enums.CollectionType type = 3;
+  string reason = 4;
+  string link = 5;
+  CollectionFile image = 6;
+  CollectionFile logo = 7;
+  bool signature_sheet_template_generated = 8;
+  CollectionFile signature_sheet_template = 9;
+  shared.v1.enums.CollectionState state = 10;
+  citizen.services.v1.models.CollectionCount attested_collection_count = 11;
+  CollectionAddress address = 12;
+  CollectionUserPermissions user_permissions = 13;
+  bool is_electronic_submission = 14;
+  bool informal_review_requested = 15;
+
+  // whether this collection is signed by the current user.
+  optional bool is_signed = 16;
+
+  // the accepted ACRs to sign this collection.
+  repeated string sign_accepted_acrs = 17;
+
+  google.protobuf.Timestamp collection_start_date = 18;
+  google.protobuf.Timestamp collection_end_date = 19;
+  shared.v1.enums.CollectionPeriodState period_state = 20;
+}
+
+message CollectionFile {
+  string id = 1;
+  string name = 2;
+}
+
+message CollectionUserPermissions {
+  shared.v1.enums.CollectionPermissionRole role = 1;
+  bool can_edit = 2;
+  bool can_edit_signature_sheet_template = 3;
+  bool can_delete_signature_sheet_template = 4;
+  bool can_generate_signature_sheet_template_preview = 5;
+  bool can_edit_permissions = 6;
+  bool can_create_messages = 7;
+  bool can_submit = 8;
+  bool is_submit_visible = 9;
+  bool can_flag_for_review = 10;
+  bool is_flag_for_review_visible = 11;
+  bool can_register = 12;
+  bool can_withdraw = 13;
+  bool can_request_informal_review = 14;
+  bool is_request_informal_review_visible = 15;
+  bool can_download_electronic_signatures_protocol = 16;
+  bool can_edit_sub_type = 17;
+}
+
+message CollectionAddress {
+  string committee_or_person = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string street_or_post_office_box = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
+  string zip_code = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true }];
+  string locality = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
+}

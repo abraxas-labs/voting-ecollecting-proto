@@ -1,0 +1,16 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "shared/enums/collection_permission_role.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message CollectionPermission {
+  string full_name = 1;
+  string email = 2;
+  shared.v1.enums.CollectionPermissionRole role = 3;
+}

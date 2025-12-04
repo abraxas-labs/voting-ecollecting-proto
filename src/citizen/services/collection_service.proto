@@ -1,0 +1,36 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1;
+
+import "citizen/services/models/validation.proto";
+import "citizen/services/requests/collection_requests.proto";
+import "citizen/services/responses/collection_responses.proto";
+import "google/protobuf/empty.proto";
+import "shared/models/collection_message.proto";
+import "shared/models/id_value.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1";
+
+service CollectionService {
+  rpc List(requests.ListCollectionsRequest) returns (responses.ListCollectionsResponse);
+  rpc ListPermissions(requests.ListCollectionPermissionsRequest) returns (responses.ListCollectionPermissionsResponse);
+  rpc CreatePermission(requests.CreateCollectionPermissionRequest) returns (shared.v1.models.IdValue);
+  rpc DeletePermission(requests.DeleteCollectionPermissionRequest) returns (google.protobuf.Empty);
+  rpc ResendPermission(requests.ResendCollectionPermissionRequest) returns (google.protobuf.Empty);
+  rpc AcceptPermissionByToken(requests.AcceptCollectionPermissionRequest) returns (google.protobuf.Empty);
+  rpc RejectPermissionByToken(requests.RejectCollectionPermissionRequest) returns (google.protobuf.Empty);
+  rpc GetPendingPermissionByToken(requests.GetPendingCollectionPermissionByTokenRequest) returns (responses.GetPendingCollectionPermissionResponse);
+  rpc ListMessages(requests.ListCollectionMessagesRequest) returns (responses.ListCollectionMessagesResponse);
+  rpc AddMessage(requests.AddCollectionMessageRequest) returns (shared.v1.models.IdValue);
+  rpc SetSignatureSheetTemplateGenerated(requests.SetSignatureSheetTemplateGeneratedRequest) returns (google.protobuf.Empty);
+  rpc GenerateSignatureSheetTemplatePreview(requests.GenerateSignatureSheetTemplatePreviewRequest) returns (google.protobuf.Empty);
+  rpc DeleteImage(requests.DeleteCollectionImageRequest) returns (google.protobuf.Empty);
+  rpc DeleteLogo(requests.DeleteCollectionLogoRequest) returns (google.protobuf.Empty);
+  rpc DeleteSignatureSheetTemplate(requests.DeleteSignatureSheetTemplateRequest) returns (google.protobuf.Empty);
+  rpc UpdateRequestInformalReview(requests.UpdateRequestInformalReviewRequest) returns (shared.v1.models.CollectionMessage);
+  rpc Withdraw(requests.WithdrawCollectionRequest) returns (google.protobuf.Empty);
+  rpc Validate(requests.ValidateCollectionRequest) returns (citizen.services.v1.models.ValidationSummary);
+}

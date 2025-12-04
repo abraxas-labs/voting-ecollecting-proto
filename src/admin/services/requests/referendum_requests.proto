@@ -1,0 +1,27 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.requests;
+
+import "admin/services/models/collection.proto";
+import "rules/rules.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
+
+message GetReferendumRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message ListReferendumDecreesRequest {
+  repeated shared.v1.enums.DomainOfInfluenceType types = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true, allow_empty: true }];
+}
+
+message CreateReferendumRequest {
+  string decree_id = 1 [(validation.v1.rules).string.guid = true];
+  string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+  admin.services.v1.models.CollectionAddress address = 3 [(validation.v1.rules).object.required = true];
+}

@@ -1,0 +1,68 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.responses;
+
+import "admin/services/models/collection_count.proto";
+import "admin/services/models/collection_signature_sheet.proto";
+import "admin/services/models/person.proto";
+import "google/protobuf/timestamp.proto";
+import "shared/models/page.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Responses";
+
+message ListSignatureSheetsResponse {
+  shared.v1.models.PageInfo page_info = 1;
+  repeated admin.services.v1.models.CollectionSignatureSheet signature_sheets = 2;
+}
+
+message ListSignatureSheetsAttestedAtResponse {
+  repeated google.protobuf.Timestamp attested_ats = 1;
+}
+
+message ReserveSignatureSheetNumberResponse {
+  int32 number = 1; // The reserved signature sheet number
+  string municipality_name = 2;
+  string bfs = 3;
+}
+
+message SearchSignatureSheetPersonCandidatesResponse {
+  shared.v1.models.PageInfo page_info = 1;
+  repeated models.CollectionSignatureSheetCandidate candidates = 2;
+}
+
+message ListSignatureSheetCitizensResponse {
+  repeated models.Person citizens = 1;
+}
+
+message SubmitSignatureSheetResponse {
+  models.CollectionCount collection_count = 1;
+  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 2;
+}
+
+message UnsubmitSignatureSheetResponse {
+  models.CollectionCount collection_count = 1;
+  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 2;
+}
+
+message DiscardSignatureSheetResponse {
+  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 1;
+}
+
+message RestoreSignatureSheetResponse {
+  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 1;
+}
+
+message ConfirmSignatureSheetResponse {
+  string next_signature_sheet_id = 1;
+}
+
+message ListSignatureSheetSamplesResponse {
+  repeated models.CollectionSignatureSheet signature_sheets = 1;
+}
+
+message AddSignatureSheetSamplesResponse {
+  repeated models.CollectionSignatureSheet signature_sheets = 1;
+}

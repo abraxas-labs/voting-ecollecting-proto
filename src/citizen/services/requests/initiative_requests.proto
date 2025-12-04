@@ -1,0 +1,131 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.requests;
+
+import "citizen/services/models/collection.proto";
+import "google/protobuf/timestamp.proto";
+import "rules/rules.proto";
+import "shared/enums/collection_permission_role.proto";
+import "shared/enums/domain_of_influence.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Requests";
+
+message ListMyInitiativesRequest {
+}
+
+message ListInitiativeSubTypesRequest {
+}
+
+message CreateInitiativeRequest {
+  shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 1 [(validation.v1.rules).enum.exact_enum = true];
+  string bfs = 2 [(validation.v1.rules).string = { max_length: 8, alpha_num_white: true, allow_empty: true }];
+  string sub_type_id = 3 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  string description = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+}
+
+message SetInitiativeInPreparationRequest {
+  string government_decision_number = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+}
+
+message GetInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  bool include_committee_description = 2;
+  bool include_is_signed = 3;
+}
+
+message UpdateInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string sub_type_id = 2 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
+  string description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+  string wording = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 10000, complex_ml_text: true }];
+  string reason = 5 [(validation.v1.rules).string = { max_length: 10000, complex_ml_text: true, allow_empty: true }];
+  citizen.services.v1.models.CollectionAddress address = 6 [(validation.v1.rules).object.required = true];
+  string link = 7 [(validation.v1.rules).string = { max_length: 2000, complex_sl_text: true, allow_empty: true }];
+}
+
+message SubmitInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message FlagInitiativeForReviewRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message RegisterInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message GetInitiativeCommitteeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
+message DeleteCommitteeListRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message AddCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string first_name = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string political_first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string political_last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 6 [(validation.v1.rules).object.required = true];
+  string bfs = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  string political_bfs = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  string email = 9 [(validation.v1.rules).string = { email: true, allow_empty: true } ];
+  string political_duty = 10 [(validation.v1.rules).string = { max_length: 50, complex_sl_text: true, allow_empty: true }];
+  shared.v1.enums.CollectionPermissionRole role = 11 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  bool request_member_signature = 12;
+}
+
+message DeleteCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateCommitteeMemberSortRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+  int32 new_index = 3 [(validation.v1.rules).integer.min_value = 0];
+}
+
+message ResendCommitteeMemberInvitationRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+}
+
+message UpdateCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+  string first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string political_first_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string political_last_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  google.protobuf.Timestamp date_of_birth = 7 [(validation.v1.rules).object.required = true];
+  string bfs = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  string political_bfs = 9 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
+  string email = 10 [(validation.v1.rules).string = { email: true, allow_empty: true } ];
+  string political_duty = 11 [(validation.v1.rules).string = { max_length: 50, complex_sl_text: true, allow_empty: true }];
+  shared.v1.enums.CollectionPermissionRole role = 12 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  bool request_member_signature = 13;
+}
+
+message GetPendingCommitteeMembershipByTokenRequest {
+  string token = 1 [(validation.v1.rules).string.regex = "^ut\\.1-[A-Za-z0-9\\-_]+$"];
+}
+
+message AcceptCommitteeMembershipRequest {
+  string token = 1 [(validation.v1.rules).string.regex = "^ut\\.1-[A-Za-z0-9\\-_]+$"];
+}
+
+message RejectCommitteeMembershipRequest {
+  string token = 1 [(validation.v1.rules).string.regex = "^ut\\.1-[A-Za-z0-9\\-_]+$"];
+}
+
+message SignInitiativeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}

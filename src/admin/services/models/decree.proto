@@ -1,0 +1,49 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "admin/services/models/collection_count.proto";
+import "admin/services/models/referendum.proto";
+import "google/protobuf/timestamp.proto";
+import "shared/enums/collection_came_not_about_reason.proto";
+import "shared/enums/collection_state.proto";
+import "shared/enums/decree_state.proto";
+import "shared/enums/domain_of_influence.proto";
+import "shared/models/date.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message Decree {
+  string id = 1;
+  shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 2;
+  string bfs = 3;
+  string description = 4;
+  google.protobuf.Timestamp collection_start_date = 5;
+  google.protobuf.Timestamp collection_end_date = 6;
+  int32 min_signature_count = 7;
+  int32 max_electronic_signature_count = 8;
+  string link = 9;
+  shared.v1.enums.CollectionPeriodState period_state = 10;
+  repeated admin.services.v1.models.Referendum collections = 11;
+  DecreeUserPermissions user_permissions = 12;
+  admin.services.v1.models.CollectionCount attested_collection_count = 13;
+  shared.v1.enums.DecreeState state = 14;
+  shared.v1.enums.CollectionCameNotAboutReason came_not_about_reason = 15;
+  shared.v1.models.Date sensitive_data_expiry_date = 16;
+}
+
+message DecreeGroup {
+  shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 1;
+  repeated Decree decrees = 2;
+}
+
+message DecreeUserPermissions {
+  bool can_edit = 1;
+  bool can_finish = 2;
+  bool can_generate_documents = 3;
+  bool can_add_collection = 4;
+  bool can_delete = 5;
+}

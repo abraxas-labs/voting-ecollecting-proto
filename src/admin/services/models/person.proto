@@ -1,0 +1,22 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message Person {
+  string register_id = 1;
+  bool is_voting_allowed = 2;
+  bool is_birth_date_valid_for_voting_rights = 3;
+  bool is_nationality_valid_for_voting_rights = 4;
+  string official_name = 5;
+  string first_name = 6;
+  google.protobuf.Timestamp date_of_birth = 7;
+  string residence_address_street = 8;
+  string residence_address_house_number = 9;
+}

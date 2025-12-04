@@ -1,0 +1,22 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.requests;
+
+import "citizen/services/models/accessibility.proto";
+import "rules/rules.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Requests";
+
+message SendAccessibilityMessageRequest {
+  citizen.services.v1.models.AccessibilitySalutation salutation = 1 [(validation.v1.rules).enum = {exact_enum: true, allow_unspecified: true}];
+  string last_name = 2 [(validation.v1.rules).string = {max_length: 100, complex_sl_text: true, allow_empty: true}];
+  string first_name = 3 [(validation.v1.rules).string = {max_length: 100, complex_sl_text: true, allow_empty: true}];
+  string email = 4 [(validation.v1.rules).string.email = true];
+  string phone = 5 [(validation.v1.rules).string = {allow_empty: true, phone: true}];
+  citizen.services.v1.models.AccessibilityCategory category = 6 [(validation.v1.rules).enum.exact_enum = true];
+  string message = 7 [(validation.v1.rules).string = {min_length: 1, max_length: 1000, complex_ml_text: true}];
+}
+

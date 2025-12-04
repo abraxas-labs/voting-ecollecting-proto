@@ -1,0 +1,16 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1;
+
+import "citizen/services/requests/domain_of_influence_requests.proto";
+import "citizen/services/responses/domain_of_influences_responses.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1";
+
+service DomainOfInfluenceService {
+  rpc List(requests.ListDomainOfInfluencesRequest) returns (responses.ListDomainOfInfluencesResponse);
+  rpc ListTypes(requests.ListDomainOfInfluenceTypesRequest) returns (responses.ListDomainOfInfluenceTypesResponse);
+}

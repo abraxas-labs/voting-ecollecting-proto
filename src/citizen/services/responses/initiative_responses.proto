@@ -1,0 +1,40 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1.responses;
+
+import "citizen/services/models/initiative.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Responses";
+
+message ListInitiativesResponse {
+  repeated citizen.services.v1.models.Initiative initiatives = 1;
+}
+
+message ListInitiativeSubTypesResponse {
+  repeated citizen.services.v1.models.InitiativeSubType sub_types = 1;
+}
+
+// expose as little data as necessary via the token
+// the user may have a permission to access more data.
+message GetPendingCommitteeMemberResponse {
+  string initiative_id = 1;
+  string description = 2;
+  citizen.services.v1.models.InitiativeSubType sub_type = 3;
+  string wording = 4;
+  string reason = 5;
+  string link = 6;
+
+  string first_name = 7;
+  string last_name = 8;
+  string invited_by_name = 9;
+
+  // the accepted ACRs to to accept this committee membership.
+  repeated string accept_accepted_acrs = 10;
+}
+
+message AcceptCommitteeMembershipResponse {
+  bool accepted = 1;
+}

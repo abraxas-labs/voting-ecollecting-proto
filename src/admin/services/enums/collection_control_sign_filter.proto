@@ -1,0 +1,14 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.enums;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Enums";
+
+enum CollectionControlSignFilter {
+  COLLECTION_CONTROL_SIGN_FILTER_UNSPECIFIED = 0;
+  COLLECTION_CONTROL_SIGN_FILTER_REMINDER_SET = 1;
+  COLLECTION_CONTROL_SIGN_FILTER_READY_TO_DELETE = 2;
+}

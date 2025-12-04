@@ -1,0 +1,15 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.models;
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
+
+message CollectionCount {
+  string id = 1;
+  string collection_id = 2;
+  optional int32 total_citizen_count = 3;
+  int32 electronic_citizen_count = 4;
+}

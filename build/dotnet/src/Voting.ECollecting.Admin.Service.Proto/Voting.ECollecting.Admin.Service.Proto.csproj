@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Voting.ECollecting.Admin.Service.Proto</PackageId>
+    <Title>Voting.ECollecting.Admin.Service.Proto Protofiles</Title>
+    <Description>Abraxas Project with service protofiles for Voting.ECollecting.Admin</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../../../src/admin/services/**/*.proto" ProtoRoot="../../../../src/admin/services" AdditionalImportDirs="../../../../src;$(PkgVoting_Lib_Validation_Proto)/content/proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Voting.ECollecting.Shared.Proto\Voting.ECollecting.Shared.Proto.csproj" />
+  </ItemGroup>
+
+</Project>

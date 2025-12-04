@@ -1,0 +1,24 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1;
+
+import "admin/services/models/domain_of_influence.proto";
+import "admin/services/requests/domain_of_influence_requests.proto";
+import "admin/services/responses/domain_of_influences_responses.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
+
+service DomainOfInfluenceService {
+  rpc List(requests.ListDomainOfInfluencesRequest) returns (responses.ListDomainOfInfluencesResponse);
+
+  // List own types returns domain of influence types that are directly assigned to the current tenant.
+  rpc ListOwnTypes(requests.ListDomainOfInfluenceOwnTypesRequest) returns (responses.ListDomainOfInfluenceOwnTypesResponse);
+
+  rpc Update(requests.UpdateDomainOfInfluenceRequest) returns (google.protobuf.Empty);
+  rpc RemoveLogo(requests.RemoveDomainOfInfluenceLogoRequest) returns (google.protobuf.Empty);
+  rpc Get(requests.GetDomainOfInfluenceRequest) returns (admin.services.v1.models.DomainOfInfluence);
+}

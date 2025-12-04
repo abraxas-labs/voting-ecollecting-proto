@@ -1,0 +1,47 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1;
+
+import "admin/services/models/initiative.proto";
+import "admin/services/models/second_factor_transaction.proto";
+import "admin/services/requests/initiative_requests.proto";
+import "admin/services/responses/initiative_responses.proto";
+import "google/protobuf/empty.proto";
+import "shared/models/id_value.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
+
+service InitiativeService {
+  rpc ListSubTypes(requests.ListInitiativeSubTypesRequest) returns (responses.ListInitiativeSubTypesResponse);
+  rpc List(requests.ListInitiativesRequest) returns (responses.ListInitiativesResponse);
+  rpc Get(requests.GetInitiativeRequest) returns (admin.services.v1.models.Initiative);
+  rpc ReturnForCorrection(requests.ReturnInitiativeForCorrectionRequest) returns (google.protobuf.Empty);
+  rpc FinishCorrection(requests.FinishCorrectionInitiativeRequest) returns (google.protobuf.Empty);
+  rpc SetCollectionPeriod(requests.SetCollectionPeriodInitiativeRequest) returns (google.protobuf.Empty);
+  rpc Enable(requests.EnableInitiativeRequest) returns (google.protobuf.Empty);
+  rpc CameAbout(requests.CameAboutInitiativeRequest) returns (google.protobuf.Empty);
+  rpc CameNotAbout(requests.CameNotAboutInitiativeRequest) returns (google.protobuf.Empty);
+  rpc Update(requests.UpdateInitiativeRequest) returns (google.protobuf.Empty);
+
+  rpc GetCommittee(requests.GetInitiativeCommitteeRequest) returns (admin.services.v1.models.InitiativeCommittee);
+  rpc ResetCommitteeMember(requests.ResetCommitteeMemberRequest) returns(google.protobuf.Empty);
+  rpc VerifyCommitteeMember(requests.VerifyCommitteeMemberRequest) returns(admin.services.v1.responses.VerifyInitiativeCommitteeMemberResponse);
+  rpc ApproveCommitteeMember(requests.ApproveCommitteeMemberRequest) returns(google.protobuf.Empty);
+  rpc RejectCommitteeMember(requests.RejectCommitteeMemberRequest) returns(google.protobuf.Empty);
+
+  // lists initiatives that are in state submitted and have no admissibility decision
+  rpc ListEligibleForAdmissibilityDecision(requests.ListEligibleForAdmissibilityDecisionRequest)
+    returns (responses.ListEligibleForAdmissibilityDecisionResponse);
+  rpc ListAdmissibilityDecisions(requests.ListAdmissibilityDecisionsRequest) returns (responses.ListAdmissibilityDecisionsResponse);
+  rpc DeleteAdmissibilityDecision(requests.DeleteAdmissibilityDecisionRequest) returns (google.protobuf.Empty);
+  rpc CreateLinkedAdmissibilityDecision(requests.CreateLinkedAdmissibilityDecisionRequest) returns (google.protobuf.Empty);
+  rpc CreateWithAdmissibilityDecision(requests.CreateInitiativeWithAdmissibilityDecisionRequest) returns (shared.v1.models.IdValue);
+  rpc UpdateAdmissibilityDecision(requests.UpdateAdmissibilityDecisionRequest) returns (google.protobuf.Empty);
+
+  rpc PrepareDelete(requests.PrepareDeleteInitiativeRequest) returns (models.SecondFactorTransaction);
+  rpc Delete(requests.DeleteInitiativeRequest) returns (google.protobuf.Empty);
+  rpc SetSensitiveDataExpiryDate(requests.SetInitiativeSensitiveDataExpiryDateRequest) returns (google.protobuf.Empty);
+}
