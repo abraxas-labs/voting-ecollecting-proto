@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.96.1`)
+# ✨ Changelog (`v1.96.3`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,12 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.96.1
-Previous version ---- v1.96.1
-Initial version ----- v1.96.1
+This version -------- v1.96.3
+Previous version ---- v1.96.3
+Initial version ----- v1.96.3
 Total commits ------- 1
 ```
 
-## [v1.96.1] - 2025-11-20
+## [v1.96.3] - 2025-12-04
 
 ### 🎉 Initial release for Bug Bounty

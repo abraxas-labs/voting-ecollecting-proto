@@ -9,13 +9,12 @@ import "admin/services/models/second_factor_transaction.proto";
 import "admin/services/requests/decree_requests.proto";
 import "admin/services/responses/decree_responses.proto";
 import "google/protobuf/empty.proto";
-import "shared/models/id_value.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
 
 service DecreeService {
   rpc List(requests.ListDecreesRequest) returns (responses.ListDecreesResponse);
-  rpc Create(requests.CreateDecreeRequest) returns (shared.v1.models.IdValue);
+  rpc Create(requests.CreateDecreeRequest) returns (responses.CreateDecreeResponse);
   rpc Update(requests.UpdateDecreeRequest) returns (google.protobuf.Empty);
   rpc DeletePublished(requests.DeletePublishedDecreeRequest) returns (google.protobuf.Empty);
   rpc CameAbout(requests.CameAboutDecreeRequest) returns (google.protobuf.Empty);
