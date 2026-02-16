@@ -21,4 +21,9 @@ message CollectionPermission {
   string iam_last_name = 8;
   string iam_first_name = 9;
   string iam_user_id = 10;
+  CollectionPermissionUserPermissions user_permissions = 11;
+}
+
+message CollectionPermissionUserPermissions {
+  bool can_resend = 1;
 }

@@ -7,7 +7,6 @@ package abraxas.voting.ecollecting.admin.services.v1.models;
 
 import "admin/services/models/collection_count.proto";
 import "admin/services/models/referendum.proto";
-import "google/protobuf/timestamp.proto";
 import "shared/enums/collection_came_not_about_reason.proto";
 import "shared/enums/collection_state.proto";
 import "shared/enums/decree_state.proto";
@@ -21,8 +20,8 @@ message Decree {
   shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 2;
   string bfs = 3;
   string description = 4;
-  google.protobuf.Timestamp collection_start_date = 5;
-  google.protobuf.Timestamp collection_end_date = 6;
+  shared.v1.models.Date collection_start_date = 5;
+  shared.v1.models.Date collection_end_date = 6;
   int32 min_signature_count = 7;
   int32 max_electronic_signature_count = 8;
   string link = 9;
@@ -33,6 +32,7 @@ message Decree {
   shared.v1.enums.DecreeState state = 14;
   shared.v1.enums.CollectionCameNotAboutReason came_not_about_reason = 15;
   shared.v1.models.Date sensitive_data_expiry_date = 16;
+  string domain_of_influence_name = 17;
 }
 
 message DecreeGroup {

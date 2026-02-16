@@ -5,7 +5,6 @@ syntax = "proto3";
 
 package abraxas.voting.ecollecting.admin.services.v1.requests;
 
-import "google/protobuf/timestamp.proto";
 import "rules/rules.proto";
 import "shared/enums/collection_came_not_about_reason.proto";
 import "shared/enums/domain_of_influence.proto";
@@ -19,18 +18,18 @@ message ListDecreesRequest {
 
 message CreateDecreeRequest {
   string description = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 1000, complex_ml_text: true }];
-  google.protobuf.Timestamp collection_start_date = 2 [(validation.v1.rules).object.required = true];
-  google.protobuf.Timestamp collection_end_date = 3 [(validation.v1.rules).object.required = true];
-  string link = 4 [(validation.v1.rules).string = { max_length: 2000, complex_sl_text: true, allow_empty: true }];
+  shared.v1.models.Date collection_start_date = 2 [(validation.v1.rules).object.required = true];
+  shared.v1.models.Date collection_end_date = 3 [(validation.v1.rules).object.required = true];
+  string link = 4 [(validation.v1.rules).string = { max_length: 2000, https_url: true, allow_empty: true }];
   shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 5 [(validation.v1.rules).enum.exact_enum = true];
 }
 
 message UpdateDecreeRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
   string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 1000, complex_ml_text: true }];
-  google.protobuf.Timestamp collection_start_date = 3 [(validation.v1.rules).object.required = true];
-  google.protobuf.Timestamp collection_end_date = 4 [(validation.v1.rules).object.required = true];
-  string link = 5 [(validation.v1.rules).string = { max_length: 2000, complex_sl_text: true, allow_empty: true }];
+  shared.v1.models.Date collection_start_date = 3 [(validation.v1.rules).object.required = true];
+  shared.v1.models.Date collection_end_date = 4 [(validation.v1.rules).object.required = true];
+  string link = 5 [(validation.v1.rules).string = { max_length: 2000, https_url: true, allow_empty: true }];
   shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 6 [(validation.v1.rules).enum.exact_enum = true];
 }
 

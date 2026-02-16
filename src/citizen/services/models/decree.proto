@@ -7,11 +7,11 @@ package abraxas.voting.ecollecting.citizen.services.v1.models;
 
 import "citizen/services/models/collection_count.proto";
 import "citizen/services/models/referendum.proto";
-import "google/protobuf/timestamp.proto";
 import "shared/enums/collection_came_not_about_reason.proto";
 import "shared/enums/collection_state.proto";
 import "shared/enums/decree_state.proto";
 import "shared/enums/domain_of_influence.proto";
+import "shared/models/date.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
 
@@ -20,8 +20,8 @@ message Decree {
   shared.v1.enums.DomainOfInfluenceType domain_of_influence_type = 2;
   string bfs = 3;
   string description = 4;
-  google.protobuf.Timestamp collection_start_date = 5;
-  google.protobuf.Timestamp collection_end_date = 6;
+  shared.v1.models.Date collection_start_date = 5;
+  shared.v1.models.Date collection_end_date = 6;
   int32 min_signature_count = 7;
   int32 max_electronic_signature_count = 8;
   string link = 9;

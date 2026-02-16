@@ -43,11 +43,12 @@ message InitiativeSubType {
 
 message InitiativeCommittee {
   repeated citizen.services.v1.models.CollectionFile committee_lists = 1;
-  repeated InitiativeCommitteeMember committee_members = 2;
-  bool approved_members_count_ok = 3;
-  int32 approved_members_count = 4;
-  int32 total_members_count = 5;
-  int32 required_approved_members_count = 6;
+  repeated InitiativeCommitteeMember active_committee_members = 2;
+  repeated InitiativeCommitteeMember rejected_or_expired_committee_members = 3;
+  bool approved_members_count_ok = 4;
+  int32 approved_members_count = 5;
+  int32 total_members_count = 6;
+  int32 required_approved_members_count = 7;
 }
 
 message InitiativeCommitteeMember {
@@ -59,19 +60,27 @@ message InitiativeCommitteeMember {
   google.protobuf.Timestamp date_of_birth = 6;
   string bfs = 7;
   string residence = 8;
-  string political_bfs = 9;
-  string political_residence = 10;
-  string email = 11;
-  string political_duty = 12;
-  bool member_signature_requested = 13;
-  shared.v1.enums.InitiativeCommitteeMemberApprovalState approval_state = 14;
-  shared.v1.enums.InitiativeCommitteeMemberSignatureType signature_type = 15;
-  shared.v1.enums.CollectionPermissionRole role = 16;
-  bool can_edit = 17;
+  string political_residence = 9;
+  string street = 10;
+  string house_number = 11;
+  string zip_code = 12;
+  string email = 13;
+  string political_duty = 14;
+  bool member_signature_requested = 15;
+  shared.v1.enums.InitiativeCommitteeMemberApprovalState approval_state = 16;
+  shared.v1.enums.InitiativeCommitteeMemberSignatureType signature_type = 17;
+  shared.v1.enums.CollectionPermissionRole role = 18;
+  InitiativeCommitteeMemberUserPermissions user_permissions = 19;
 }
 
 message InitiativeLockedFields {
   bool wording = 1;
   bool description = 2;
   bool committee_members = 3;
+}
+
+message InitiativeCommitteeMemberUserPermissions {
+  bool can_edit = 1;
+  bool can_edit_political_duty = 2;
+  bool can_resend = 3;
 }

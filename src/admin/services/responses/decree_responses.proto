@@ -18,4 +18,5 @@ message CreateDecreeResponse {
   string id = 1;
   admin.services.v1.models.DecreeUserPermissions user_permissions = 2;
   shared.v1.enums.CollectionPeriodState period_state = 3;
+  string domain_of_influence_name = 4;
 }

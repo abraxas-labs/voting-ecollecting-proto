@@ -7,7 +7,6 @@ package abraxas.voting.ecollecting.admin.services.v1.requests;
 
 import "admin/services/models/collection.proto";
 import "admin/services/models/initiative.proto";
-import "google/protobuf/timestamp.proto";
 import "rules/rules.proto";
 import "shared/enums/collection_came_not_about_reason.proto";
 import "shared/enums/collection_state.proto";
@@ -39,14 +38,14 @@ message FinishCorrectionInitiativeRequest {
 
 message SetCollectionPeriodInitiativeRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
-  google.protobuf.Timestamp collection_start_date = 2 [(validation.v1.rules).object.required = true];
-  google.protobuf.Timestamp collection_end_date = 3 [(validation.v1.rules).object.required = true];
+  shared.v1.models.Date collection_start_date = 2 [(validation.v1.rules).object.required = true];
+  shared.v1.models.Date collection_end_date = 3 [(validation.v1.rules).object.required = true];
 }
 
 message EnableInitiativeRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
-  google.protobuf.Timestamp collection_start_date = 2;
-  google.protobuf.Timestamp collection_end_date = 3;
+  shared.v1.models.Date collection_start_date = 2;
+  shared.v1.models.Date collection_end_date = 3;
 }
 
 message GetInitiativeCommitteeRequest {
@@ -104,7 +103,7 @@ message DeleteAdmissibilityDecisionRequest {
 
 message CreateLinkedAdmissibilityDecisionRequest {
   string initiative_id = 1 [(validation.v1.rules).string.guid = true];
-  string government_decision_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string government_decision_number = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
   admin.services.v1.models.AdmissibilityDecisionState admissibility_decision_state = 3 [(validation.v1.rules).enum.exact_enum = true];
 }
 
@@ -114,14 +113,14 @@ message CreateInitiativeWithAdmissibilityDecisionRequest {
   string description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
   string wording = 4 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, complex_ml_text: true }];
   admin.services.v1.models.CollectionAddress address = 5;
-  string government_decision_number = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string government_decision_number = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 50, complex_sl_text: true }];
   admin.services.v1.models.AdmissibilityDecisionState admissibility_decision_state = 7 [(validation.v1.rules).enum.exact_enum = true];
 }
 
 message UpdateAdmissibilityDecisionRequest {
   string initiative_id = 1 [(validation.v1.rules).string.guid = true];
   admin.services.v1.models.AdmissibilityDecisionState admissibility_decision_state = 2 [(validation.v1.rules).enum.exact_enum = true];
-  string government_decision_number = 3 [(validation.v1.rules).string = { allow_empty: true, max_length: 50, simple_sl_text: true }];
+  string government_decision_number = 3 [(validation.v1.rules).string = { allow_empty: true, max_length: 50, complex_sl_text: true }];
 }
 
 message SetInitiativeSensitiveDataExpiryDateRequest {

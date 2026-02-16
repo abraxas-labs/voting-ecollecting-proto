@@ -6,10 +6,10 @@ syntax = "proto3";
 package abraxas.voting.ecollecting.admin.services.v1.models;
 
 import "admin/services/models/collection_count.proto";
-import "google/protobuf/timestamp.proto";
 import "rules/rules.proto";
 import "shared/enums/collection_state.proto";
 import "shared/enums/collection_type.proto";
+import "shared/models/date.proto";
 import "shared/models/file.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
@@ -30,9 +30,10 @@ message Collection {
   bool is_electronic_submission = 13;
   bool informal_review_requested = 14;
   CollectionUserPermissions user_permissions = 15;
-  google.protobuf.Timestamp collection_start_date = 16;
-  google.protobuf.Timestamp collection_end_date = 17;
+  shared.v1.models.Date collection_start_date = 16;
+  shared.v1.models.Date collection_end_date = 17;
   shared.v1.enums.CollectionPeriodState period_state = 18;
+  string secure_id_number = 19;
 }
 
 message CollectionAddress {

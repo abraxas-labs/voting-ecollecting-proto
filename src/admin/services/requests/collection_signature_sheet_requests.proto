@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 import "rules/rules.proto";
 import "shared/enums/collection_type.proto";
 import "shared/enums/sort.proto";
+import "shared/models/date.proto";
 import "shared/models/page.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
@@ -44,14 +45,14 @@ message TryReleaseSignatureSheetNumberRequest {
 message AddSignatureSheetRequest {
   string collection_id = 1 [(validation.v1.rules).string.guid = true];
   int32 number = 2 [(validation.v1.rules).integer.min_value = 1];
-  google.protobuf.Timestamp received_at = 3 [(validation.v1.rules).object.required = true];
+  shared.v1.models.Date received_at = 3 [(validation.v1.rules).object.required = true];
   int32 signature_count_total = 4 [(validation.v1.rules).integer.min_value = 1];
 }
 
 message UpdateSignatureSheetRequest {
   string collection_id = 1 [(validation.v1.rules).string.guid = true];
   string signature_sheet_id = 2 [(validation.v1.rules).string.guid = true];
-  google.protobuf.Timestamp received_at = 3 [(validation.v1.rules).object.required = true];
+  shared.v1.models.Date received_at = 3 [(validation.v1.rules).object.required = true];
   int32 signature_count_total = 4 [(validation.v1.rules).integer.min_value = 1];
 }
 
@@ -137,4 +138,5 @@ enum ListSignatureSheetsSort {
   LIST_SIGNATURE_SHEETS_SORT_COUNT_TOTAL = 5;
   LIST_SIGNATURE_SHEETS_SORT_COUNT_VALID = 6;
   LIST_SIGNATURE_SHEETS_SORT_COUNT_INVALID = 7;
+  LIST_SIGNATURE_SHEETS_SORT_STATE = 8;
 }

@@ -6,11 +6,11 @@ syntax = "proto3";
 package abraxas.voting.ecollecting.citizen.services.v1.models;
 
 import "citizen/services/models/collection_count.proto";
-import "google/protobuf/timestamp.proto";
 import "rules/rules.proto";
 import "shared/enums/collection_permission_role.proto";
 import "shared/enums/collection_state.proto";
 import "shared/enums/collection_type.proto";
+import "shared/models/date.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
 
@@ -33,13 +33,14 @@ message Collection {
 
   // whether this collection is signed by the current user.
   optional bool is_signed = 16;
+  CollectionSignatureType signature_type = 17;
 
   // the accepted ACRs to sign this collection.
-  repeated string sign_accepted_acrs = 17;
+  repeated string sign_accepted_acrs = 18;
 
-  google.protobuf.Timestamp collection_start_date = 18;
-  google.protobuf.Timestamp collection_end_date = 19;
-  shared.v1.enums.CollectionPeriodState period_state = 20;
+  shared.v1.models.Date collection_start_date = 19;
+  shared.v1.models.Date collection_end_date = 20;
+  shared.v1.enums.CollectionPeriodState period_state = 21;
 }
 
 message CollectionFile {
@@ -65,6 +66,7 @@ message CollectionUserPermissions {
   bool is_request_informal_review_visible = 15;
   bool can_download_electronic_signatures_protocol = 16;
   bool can_edit_sub_type = 17;
+  bool can_download_committee_list = 18;
 }
 
 message CollectionAddress {
@@ -72,4 +74,10 @@ message CollectionAddress {
   string street_or_post_office_box = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
   string zip_code = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true }];
   string locality = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
+}
+
+enum CollectionSignatureType {
+  COLLECTION_SIGNATURE_TYPE_UNSPECIFIED = 0;
+  COLLECTION_SIGNATURE_TYPE_ELECTRONIC = 1;
+  COLLECTION_SIGNATURE_TYPE_PHYSICAL = 2;
 }

@@ -7,13 +7,14 @@ package abraxas.voting.ecollecting.admin.services.v1.models;
 
 import "admin/services/models/person.proto";
 import "google/protobuf/timestamp.proto";
+import "shared/models/date.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
 
 message CollectionSignatureSheet {
   string id = 1;
   int32 number = 2;
-  google.protobuf.Timestamp received_at = 3;
+  shared.v1.models.Date received_at = 3;
   google.protobuf.Timestamp attested_at = 4;
   string created_by_name = 5;
   string modified_by_name = 6;
@@ -22,6 +23,7 @@ message CollectionSignatureSheet {
   string municipality_name = 9;
   string bfs = 10;
   CollectionSignatureSheetUserPermissions user_permissions = 11;
+  bool modified_by_superior_authority = 12;
 }
 
 message CollectionSignatureSheetCount {

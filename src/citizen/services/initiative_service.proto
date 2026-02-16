@@ -30,6 +30,7 @@ service InitiativeService {
   rpc DeleteCommitteeMember(requests.DeleteCommitteeMemberRequest) returns (google.protobuf.Empty);
   rpc UpdateCommitteeMemberSort(requests.UpdateCommitteeMemberSortRequest) returns (google.protobuf.Empty);
   rpc UpdateCommitteeMember(requests.UpdateCommitteeMemberRequest) returns (google.protobuf.Empty);
+  rpc UpdateCommitteeMemberPoliticalDuty(requests.UpdateCommitteeMemberPoliticalDutyRequest) returns (google.protobuf.Empty);
   rpc ResendCommitteeMemberInvitation(requests.ResendCommitteeMemberInvitationRequest) returns (google.protobuf.Empty);
   rpc GetPendingCommitteeMembershipByToken(requests.GetPendingCommitteeMembershipByTokenRequest) returns (responses.GetPendingCommitteeMemberResponse);
   rpc AcceptCommitteeMembershipByToken(requests.AcceptCommitteeMembershipRequest) returns (responses.AcceptCommitteeMembershipResponse);

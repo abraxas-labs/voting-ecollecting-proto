@@ -1,0 +1,14 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.citizen.services.v1;
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1";
+
+service AuthService {
+  rpc TrackLogin(google.protobuf.Empty) returns (google.protobuf.Empty);
+}

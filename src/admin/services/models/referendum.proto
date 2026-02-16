@@ -14,7 +14,6 @@ message Referendum {
   SimpleDecree decree = 2;
   string members_committee = 3;
   admin.services.v1.models.Collection collection = 4;
-  string number = 5;
 }
 
 message SimpleDecree {

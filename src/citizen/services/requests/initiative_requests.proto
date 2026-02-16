@@ -27,7 +27,7 @@ message CreateInitiativeRequest {
 }
 
 message SetInitiativeInPreparationRequest {
-  string government_decision_number = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string secure_id_number = 1 [(validation.v1.rules).string = { min_length: 12, max_length: 12, regex: "^[A-Z0-9]{12}$" }];
 }
 
 message GetInitiativeRequest {
@@ -43,7 +43,7 @@ message UpdateInitiativeRequest {
   string wording = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 10000, complex_ml_text: true }];
   string reason = 5 [(validation.v1.rules).string = { max_length: 10000, complex_ml_text: true, allow_empty: true }];
   citizen.services.v1.models.CollectionAddress address = 6 [(validation.v1.rules).object.required = true];
-  string link = 7 [(validation.v1.rules).string = { max_length: 2000, complex_sl_text: true, allow_empty: true }];
+  string link = 7 [(validation.v1.rules).string = { max_length: 2000, https_url: true, allow_empty: true }];
 }
 
 message SubmitInitiativeRequest {
@@ -75,11 +75,14 @@ message AddCommitteeMemberRequest {
   string political_last_name = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   google.protobuf.Timestamp date_of_birth = 6 [(validation.v1.rules).object.required = true];
   string bfs = 7 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
-  string political_bfs = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
-  string email = 9 [(validation.v1.rules).string = { email: true, allow_empty: true } ];
-  string political_duty = 10 [(validation.v1.rules).string = { max_length: 50, complex_sl_text: true, allow_empty: true }];
-  shared.v1.enums.CollectionPermissionRole role = 11 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
-  bool request_member_signature = 12;
+  string political_residence = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string street = 9 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
+  string house_number = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 30, alpha_num_white: true }];
+  string zip_code = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true }];
+  string email = 12 [(validation.v1.rules).string = { email: true, allow_empty: true } ];
+  string political_duty = 13 [(validation.v1.rules).string = { max_length: 50, complex_sl_text: true, allow_empty: true }];
+  shared.v1.enums.CollectionPermissionRole role = 14 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  bool request_member_signature = 15;
 }
 
 message DeleteCommitteeMemberRequest {
@@ -107,11 +110,20 @@ message UpdateCommitteeMemberRequest {
   string political_last_name = 6 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
   google.protobuf.Timestamp date_of_birth = 7 [(validation.v1.rules).object.required = true];
   string bfs = 8 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
-  string political_bfs = 9 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
-  string email = 10 [(validation.v1.rules).string = { email: true, allow_empty: true } ];
-  string political_duty = 11 [(validation.v1.rules).string = { max_length: 50, complex_sl_text: true, allow_empty: true }];
-  shared.v1.enums.CollectionPermissionRole role = 12 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
-  bool request_member_signature = 13;
+  string political_residence = 9 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string street = 10 [(validation.v1.rules).string = { min_length: 1, max_length: 150, complex_sl_text: true }];
+  string house_number = 11 [(validation.v1.rules).string = { min_length: 1, max_length: 30, alpha_num_white: true }];
+  string zip_code = 12 [(validation.v1.rules).string = { min_length: 1, max_length: 15, complex_sl_text: true }];
+  string email = 13 [(validation.v1.rules).string = { email: true, allow_empty: true } ];
+  string political_duty = 14 [(validation.v1.rules).string = { max_length: 50, complex_sl_text: true, allow_empty: true }];
+  shared.v1.enums.CollectionPermissionRole role = 15 [(validation.v1.rules).enum = { exact_enum: true, allow_unspecified: true }];
+  bool request_member_signature = 16;
+}
+
+message UpdateCommitteeMemberPoliticalDutyRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+  string political_duty = 3 [(validation.v1.rules).string = { max_length: 50, complex_sl_text: true, allow_empty: true }];
 }
 
 message GetPendingCommitteeMembershipByTokenRequest {

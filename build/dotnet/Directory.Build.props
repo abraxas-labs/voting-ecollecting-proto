@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Voting.Lib.Validation.Proto" Version="1.1.0" GeneratePathProperty="true" />
+    <PackageReference Include="Voting.Lib.Validation.Proto" Version="1.4.0" GeneratePathProperty="true" />
     <PackageReference Include="Google.Protobuf" Version="3.21.5" />
     <PackageReference Include="Grpc" Version="2.46.3" />
     <PackageReference Include="Grpc.Core" Version="2.46.3" />

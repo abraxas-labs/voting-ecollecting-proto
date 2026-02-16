@@ -1,4 +1,4 @@
-// (c) Copyright 2024 by Abraxas Informatik AG
+// (c) Copyright by Abraxas Informatik AG
 // For license information see LICENSE file
 
 syntax = "proto3";
@@ -86,4 +86,9 @@ message StringRules {
     Satzzeichen (Interpunktion).
   */
   optional bool complex_ml_text = 15;
+
+  /*
+    Der Wert ist eine valide, absolute HTTPS URL (eine absolute URL gem. RFC 1738 mit Schema https).
+  */
+  optional bool https_url = 16;
 }

@@ -17,7 +17,7 @@ message CreateReferendumRequest {
 }
 
 message SetReferendumInPreparationRequest {
-  string referendum_number = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 50, simple_sl_text: true }];
+  string secure_id_number = 1 [(validation.v1.rules).string = { min_length: 12, max_length: 12, regex: "^[A-Z0-9]{12}$" }];
 }
 
 message GetReferendumRequest {
@@ -30,8 +30,8 @@ message UpdateReferendumRequest {
   string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
   string reason = 3 [(validation.v1.rules).string = { max_length: 10000, complex_ml_text: true, allow_empty: true }];
   citizen.services.v1.models.CollectionAddress address = 4 [(validation.v1.rules).object.required = true];
-  string members_committee = 5 [(validation.v1.rules).string = { max_length: 1000, complex_ml_text: true, allow_empty: true }];
-  string link = 6 [(validation.v1.rules).string = { max_length: 2000, complex_sl_text: true, allow_empty: true }];
+  string members_committee = 5 [(validation.v1.rules).string = { max_length: 2000, complex_ml_text: true, allow_empty: true }];
+  string link = 6 [(validation.v1.rules).string = { max_length: 2000, https_url: true, allow_empty: true }];
 }
 
 message UpdateReferendumDecreeRequest {

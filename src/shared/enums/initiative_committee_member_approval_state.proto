@@ -27,4 +27,7 @@ enum InitiativeCommitteeMemberApprovalState {
 
   // committee member has been rejected by the government admin
   INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_REJECTED = 5;
+
+  // committee member invitation has expired
+  INITIATIVE_COMMITTEE_MEMBER_APPROVAL_STATE_EXPIRED = 6;
 }
