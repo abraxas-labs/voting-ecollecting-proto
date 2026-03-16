@@ -38,21 +38,21 @@ message ListSignatureSheetCitizensResponse {
 }
 
 message SubmitSignatureSheetResponse {
-  models.CollectionCount collection_count = 1;
-  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 2;
+  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 1;
 }
 
 message UnsubmitSignatureSheetResponse {
-  models.CollectionCount collection_count = 1;
-  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 2;
+  admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 1;
 }
 
 message DiscardSignatureSheetResponse {
   admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 1;
+  models.CollectionCount collection_count = 2;
 }
 
 message RestoreSignatureSheetResponse {
   admin.services.v1.models.CollectionSignatureSheetUserPermissions user_permissions = 1;
+  models.CollectionCount collection_count = 2;
 }
 
 message ConfirmSignatureSheetResponse {

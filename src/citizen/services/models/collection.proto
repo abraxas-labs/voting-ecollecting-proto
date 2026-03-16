@@ -11,6 +11,7 @@ import "shared/enums/collection_permission_role.proto";
 import "shared/enums/collection_state.proto";
 import "shared/enums/collection_type.proto";
 import "shared/models/date.proto";
+import "shared/models/file.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
 
@@ -20,10 +21,10 @@ message Collection {
   shared.v1.enums.CollectionType type = 3;
   string reason = 4;
   string link = 5;
-  CollectionFile image = 6;
-  CollectionFile logo = 7;
+  shared.v1.models.File image = 6;
+  shared.v1.models.File logo = 7;
   bool signature_sheet_template_generated = 8;
-  CollectionFile signature_sheet_template = 9;
+  shared.v1.models.File signature_sheet_template = 9;
   shared.v1.enums.CollectionState state = 10;
   citizen.services.v1.models.CollectionCount attested_collection_count = 11;
   CollectionAddress address = 12;
@@ -41,11 +42,6 @@ message Collection {
   shared.v1.models.Date collection_start_date = 19;
   shared.v1.models.Date collection_end_date = 20;
   shared.v1.enums.CollectionPeriodState period_state = 21;
-}
-
-message CollectionFile {
-  string id = 1;
-  string name = 2;
 }
 
 message CollectionUserPermissions {

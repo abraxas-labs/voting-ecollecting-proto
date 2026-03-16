@@ -25,8 +25,9 @@ service CollectionService {
   rpc GetPendingPermissionByToken(requests.GetPendingCollectionPermissionByTokenRequest) returns (responses.GetPendingCollectionPermissionResponse);
   rpc ListMessages(requests.ListCollectionMessagesRequest) returns (responses.ListCollectionMessagesResponse);
   rpc AddMessage(requests.AddCollectionMessageRequest) returns (shared.v1.models.IdValue);
-  rpc SetSignatureSheetTemplateGenerated(requests.SetSignatureSheetTemplateGeneratedRequest) returns (google.protobuf.Empty);
-  rpc GenerateSignatureSheetTemplatePreview(requests.GenerateSignatureSheetTemplatePreviewRequest) returns (google.protobuf.Empty);
+  rpc SetSignatureSheetTemplateGenerated(requests.SetSignatureSheetTemplateGeneratedRequest) returns (responses.SetSignatureSheetTemplateGeneratedResponse);
+  rpc GenerateSignatureSheetTemplatePreview(requests.GenerateSignatureSheetTemplatePreviewRequest)
+    returns (responses.GenerateSignatureSheetTemplatePreviewResponse);
   rpc DeleteImage(requests.DeleteCollectionImageRequest) returns (google.protobuf.Empty);
   rpc DeleteLogo(requests.DeleteCollectionLogoRequest) returns (google.protobuf.Empty);
   rpc DeleteSignatureSheetTemplate(requests.DeleteSignatureSheetTemplateRequest) returns (google.protobuf.Empty);

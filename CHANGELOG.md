@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.99.8`)
+# ✨ Changelog (`v1.104.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.99.8
-Previous version ---- v1.96.3
+This version -------- v1.104.0
+Previous version ---- v1.99.8
 Initial version ----- v1.96.3
-Total commits ------- 18
+Total commits ------- 6
 ```
+
+## [v1.104.0] - 2026-03-10
+
+### 🔄 Changed
+
+- angular 21 update
+
+## [v1.103.0] - 2026-03-09
+
+### 🆕 Added
+
+- feat(VOTING-6818): add doi address name
+
+## [v1.102.0] - 2026-03-04
+
+### 🆕 Added
+
+- feat(VOTING-6729): markdown initiative wording
+
+## [v1.101.0] - 2026-02-24
+
+### 🆕 Added
+
+- feat(VOTING-6827): count signatures on attestation
+
+## [v1.100.1] - 2026-02-13
+
+### 🔄 Changed
+
+- adjust filenames
+
+## [v1.100.0] - 2026-02-12
+
+### 🔄 Changed
+
+- feat(VOTING-6334): move settings from voting basis
 
 ## [v1.99.8] - 2026-02-09
 

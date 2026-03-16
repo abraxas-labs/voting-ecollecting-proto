@@ -9,6 +9,7 @@ import "admin/services/models/collection.proto";
 import "admin/services/models/collection_group.proto";
 import "admin/services/models/collection_permission.proto";
 import "shared/models/collection_message.proto";
+import "shared/models/file.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Responses";
 
@@ -27,4 +28,16 @@ message ListCollectionPermissionsResponse {
 
 message SubmitSignatureSheetsResponse {
   admin.services.v1.models.CollectionUserPermissions user_permissions = 1;
+}
+
+message DeleteSignatureSheetTemplateResponse {
+  shared.v1.models.File generated_signature_sheet_template = 1;
+}
+
+message DeleteCollectionLogoResponse {
+  shared.v1.models.File generated_signature_sheet_template = 1;
+}
+
+message DeleteCollectionImageResponse {
+  shared.v1.models.File generated_signature_sheet_template = 1;
 }

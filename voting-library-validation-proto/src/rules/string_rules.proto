@@ -91,4 +91,10 @@ message StringRules {
     Der Wert ist eine valide, absolute HTTPS URL (eine absolute URL gem. RFC 1738 mit Schema https).
   */
   optional bool https_url = 16;
+
+  /*
+    Markdown Text.
+    Analog complex_ml_text, zusätzlich erlaubt ist <br>, <br/>, <sup> und </sup> für hochgestellten Text.
+  */
+  optional bool markdown_text = 17;
 }

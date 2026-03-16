@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.ecollecting.citizen.services.v1.responses;
 
 import "citizen/services/models/initiative.proto";
+import "shared/models/string.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Responses";
 
@@ -23,7 +24,7 @@ message GetPendingCommitteeMemberResponse {
   string initiative_id = 1;
   string description = 2;
   citizen.services.v1.models.InitiativeSubType sub_type = 3;
-  string wording = 4;
+  shared.v1.models.MarkdownString wording = 4;
   string reason = 5;
   string link = 6;
 

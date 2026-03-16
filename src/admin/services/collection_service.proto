@@ -20,9 +20,9 @@ service CollectionService {
   rpc FinishInformalReview(requests.FinishInformalReviewRequest) returns (shared.v1.models.CollectionMessage);
   rpc ListForDeletion(requests.ListCollectionsForDeletionRequest) returns (responses.ListCollectionsForDeletionResponse);
   rpc DeleteWithdrawn(requests.DeleteWithdrawnCollectionRequest) returns (google.protobuf.Empty);
-  rpc DeleteImage(requests.DeleteCollectionImageRequest) returns (google.protobuf.Empty);
-  rpc DeleteLogo(requests.DeleteCollectionLogoRequest) returns (google.protobuf.Empty);
-  rpc DeleteSignatureSheetTemplate(requests.DeleteSignatureSheetTemplateRequest) returns (google.protobuf.Empty);
+  rpc DeleteImage(requests.DeleteCollectionImageRequest) returns (responses.DeleteCollectionImageResponse);
+  rpc DeleteLogo(requests.DeleteCollectionLogoRequest) returns (responses.DeleteCollectionLogoResponse);
+  rpc DeleteSignatureSheetTemplate(requests.DeleteSignatureSheetTemplateRequest) returns (responses.DeleteSignatureSheetTemplateResponse);
   rpc ListPermissions(requests.ListCollectionPermissionsRequest) returns (responses.ListCollectionPermissionsResponse);
   rpc SubmitSignatureSheets(requests.SubmitSignatureSheetsRequest) returns (responses.SubmitSignatureSheetsResponse);
   rpc SetCommitteeAddress(requests.SetCommitteeAddressRequest) returns (google.protobuf.Empty);

@@ -14,6 +14,7 @@ import "shared/enums/initiative_committee_member_approval_state.proto";
 import "shared/enums/initiative_committee_member_signature_type.proto";
 import "shared/models/date.proto";
 import "shared/models/file.proto";
+import "shared/models/string.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
 
@@ -28,7 +29,7 @@ message Initiative {
   string bfs = 3;
   int32 min_signature_count = 4;
   int32 max_electronic_signature_count = 5;
-  string wording = 6;
+  shared.v1.models.MarkdownString wording = 6;
   admin.services.v1.models.Collection collection = 7;
   InitiativeSubType sub_type = 8;
   string government_decision_number = 9;

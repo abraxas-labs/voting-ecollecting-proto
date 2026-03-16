@@ -12,6 +12,8 @@ import "shared/enums/collection_permission_role.proto";
 import "shared/enums/domain_of_influence.proto";
 import "shared/enums/initiative_committee_member_approval_state.proto";
 import "shared/enums/initiative_committee_member_signature_type.proto";
+import "shared/models/file.proto";
+import "shared/models/string.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
 
@@ -21,7 +23,7 @@ message Initiative {
   string bfs = 3;
   int32 min_signature_count = 4;
   int32 max_electronic_signature_count = 5;
-  string wording = 6;
+  shared.v1.models.MarkdownString wording = 6;
   citizen.services.v1.models.Collection collection = 7;
   InitiativeSubType sub_type = 8;
   string government_decision_number = 9;
@@ -42,7 +44,7 @@ message InitiativeSubType {
 }
 
 message InitiativeCommittee {
-  repeated citizen.services.v1.models.CollectionFile committee_lists = 1;
+  repeated shared.v1.models.File committee_lists = 1;
   repeated InitiativeCommitteeMember active_committee_members = 2;
   repeated InitiativeCommitteeMember rejected_or_expired_committee_members = 3;
   bool approved_members_count_ok = 4;

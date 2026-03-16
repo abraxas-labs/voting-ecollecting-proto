@@ -26,13 +26,23 @@ message GetDomainOfInfluenceRequest {
 
 message UpdateDomainOfInfluenceRequest {
   string bfs = 1 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true }];
-  string name = 2 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true }];
+  string address_name = 2 [(validation.v1.rules).string = { max_length: 100, simple_sl_text: true }];
   string street = 3 [(validation.v1.rules).string = { max_length: 150, complex_sl_text: true }];
   string zip_code = 4 [(validation.v1.rules).string = { max_length: 15, complex_sl_text: true }];
   string locality = 5 [(validation.v1.rules).string = { max_length: 150, complex_sl_text: true }];
   string phone = 6 [(validation.v1.rules).string = { allow_empty: true, phone: true }];
   string email = 7 [(validation.v1.rules).string = { allow_empty: true, email: true }];
-  string webpage = 8 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, complex_sl_text: true }];
+  repeated string notification_emails = 8 [(validation.v1.rules).string = { allow_empty: true, email: true }];
+  string webpage = 9 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, complex_sl_text: true }];
+  UpdateDomainOfInfluenceSettings settings = 10;
+}
+
+message UpdateDomainOfInfluenceSettings {
+  optional int32 initiative_min_signature_count = 1 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000000 }];
+  optional int32 initiative_max_electronic_signature_percent = 2 [(validation.v1.rules).integer = { min_value: 0, max_value: 100 }];
+  optional int32 initiative_number_of_members_committee = 3 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000000 }];
+  optional int32 referendum_max_electronic_signature_percent = 5 [(validation.v1.rules).integer = { min_value: 0, max_value: 100 }];
+  optional int32 referendum_min_signature_count = 4 [(validation.v1.rules).integer = { min_value: 0, max_value: 1000000 }];
 }
 
 message RemoveDomainOfInfluenceLogoRequest {

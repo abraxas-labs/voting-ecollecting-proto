@@ -17,7 +17,6 @@ message ListCollectionMunicipalitiesResponse {
 
 message SubmitCollectionMunicipalitySignatureSheetsResponse {
   models.CollectionMunicipality municipality = 1;
-  models.CollectionCount collection_count = 2;
 }
 
 message ListCollectionMunicipalitySignatureSheetsResponse {
