@@ -8,6 +8,7 @@ package abraxas.voting.ecollecting.admin.services.v1;
 import "admin/services/models/referendum.proto";
 import "admin/services/requests/referendum_requests.proto";
 import "admin/services/responses/referendum_responses.proto";
+import "google/protobuf/empty.proto";
 import "shared/models/id_value.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1";
@@ -16,4 +17,5 @@ service ReferendumService {
   rpc Get(requests.GetReferendumRequest) returns (admin.services.v1.models.Referendum);
   rpc ListDecrees(requests.ListReferendumDecreesRequest) returns (responses.ListReferendumDecreesResponse);
   rpc Create(requests.CreateReferendumRequest) returns (shared.v1.models.IdValue);
+  rpc Update(requests.UpdateReferendumRequest) returns (google.protobuf.Empty);
 }

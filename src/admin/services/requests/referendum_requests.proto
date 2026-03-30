@@ -25,3 +25,12 @@ message CreateReferendumRequest {
   string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
   admin.services.v1.models.CollectionAddress address = 3 [(validation.v1.rules).object.required = true];
 }
+
+message UpdateReferendumRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+  string description = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
+  string reason = 3 [(validation.v1.rules).string = { max_length: 10000, complex_ml_text: true, allow_empty: true }];
+  admin.services.v1.models.CollectionAddress address = 4 [(validation.v1.rules).object.required = true];
+  string members_committee = 5 [(validation.v1.rules).string = { max_length: 2000, complex_ml_text: true, allow_empty: true }];
+  string link = 6 [(validation.v1.rules).string = { max_length: 2000, https_url: true, allow_empty: true }];
+}

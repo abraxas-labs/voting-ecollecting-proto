@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.104.0`)
+# ✨ Changelog (`v1.106.2`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.104.0
-Previous version ---- v1.99.8
+This version -------- v1.106.2
+Previous version ---- v1.104.0
 Initial version ----- v1.96.3
-Total commits ------- 6
+Total commits ------- 4
 ```
+
+## [v1.106.2] - 2026-03-23
+
+### 🆕 Added
+
+- fix(VOTING-6816): add initiative reason to update endpoint
+
+## [v1.106.1] - 2026-03-18
+
+### 🔄 Changed
+
+- fix(VOTING-6816): update comittee member input validation
+
+## [v1.106.0] - 2026-03-18
+
+### 🆕 Added
+
+- feat(VOTING-6816): committee member updates in admin
+
+## [v1.105.0] - 2026-03-16
+
+### 🆕 Added
+
+- allow to edit collections in admin portal
 
 ## [v1.104.0] - 2026-03-10
 

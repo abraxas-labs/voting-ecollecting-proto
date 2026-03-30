@@ -72,6 +72,15 @@ message RejectCommitteeMemberRequest {
   string id = 2 [(validation.v1.rules).string.guid = true];
 }
 
+message UpdateCommitteeMemberRequest {
+  string initiative_id = 1 [(validation.v1.rules).string.guid = true];
+  string id = 2 [(validation.v1.rules).string.guid = true];
+  string political_first_name = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string political_last_name = 4 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string political_residence = 5 [(validation.v1.rules).string = { min_length: 1, max_length: 100, complex_sl_text: true }];
+  string political_duty = 6 [(validation.v1.rules).string = { allow_empty: true, max_length: 50, complex_sl_text: true }];
+}
+
 message CameAboutInitiativeRequest {
   string initiative_id = 1 [(validation.v1.rules).string.guid = true];
   shared.v1.models.Date sensitive_data_expiry_date = 2 [(validation.v1.rules).object.required = true];
@@ -82,7 +91,8 @@ message UpdateInitiativeRequest {
   string sub_type_id = 2 [(validation.v1.rules).string = { guid: true, allow_empty: true }];
   string description = 3 [(validation.v1.rules).string = { min_length: 1, max_length: 200, complex_sl_text: true }];
   string wording = 4 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, markdown_text: true }];
-  admin.services.v1.models.CollectionAddress address = 5;
+  string reason = 5 [(validation.v1.rules).string = { max_length: 10000, complex_ml_text: true, allow_empty: true }];
+  admin.services.v1.models.CollectionAddress address = 6;
 }
 
 message CameNotAboutInitiativeRequest {

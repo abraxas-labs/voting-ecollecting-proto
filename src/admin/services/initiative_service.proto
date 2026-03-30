@@ -31,6 +31,7 @@ service InitiativeService {
   rpc VerifyCommitteeMember(requests.VerifyCommitteeMemberRequest) returns(admin.services.v1.responses.VerifyInitiativeCommitteeMemberResponse);
   rpc ApproveCommitteeMember(requests.ApproveCommitteeMemberRequest) returns(google.protobuf.Empty);
   rpc RejectCommitteeMember(requests.RejectCommitteeMemberRequest) returns(google.protobuf.Empty);
+  rpc UpdateCommitteeMember(requests.UpdateCommitteeMemberRequest) returns(google.protobuf.Empty);
 
   // lists initiatives that are in state submitted and have no admissibility decision
   rpc ListEligibleForAdmissibilityDecision(requests.ListEligibleForAdmissibilityDecisionRequest)

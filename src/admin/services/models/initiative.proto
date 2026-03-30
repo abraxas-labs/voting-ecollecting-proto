@@ -97,4 +97,5 @@ message InitiativeLockedFields {
 message InitiativeCommitteeMemberUserPermissions {
   bool can_reset = 1;
   bool can_verify = 2;
+  bool can_edit_political_details = 3;
 }

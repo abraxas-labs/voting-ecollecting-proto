@@ -61,5 +61,6 @@ message CollectionUserPermissions {
   bool can_edit_admissibility_decision = 15;
   bool can_delete_admissibility_decision = 16;
   bool can_edit_general_information = 17;
-  bool can_return_for_correction = 18;
+  bool can_edit_general_information_in_admissibility_decision = 18;
+  bool can_return_for_correction = 19;
 }
