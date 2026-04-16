@@ -42,6 +42,7 @@ message Collection {
   shared.v1.models.Date collection_start_date = 19;
   shared.v1.models.Date collection_end_date = 20;
   shared.v1.enums.CollectionPeriodState period_state = 21;
+  shared.v1.models.Date signature_list_submission_end_date = 22;
 }
 
 message CollectionUserPermissions {

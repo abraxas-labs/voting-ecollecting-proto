@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.106.2`)
+# ✨ Changelog (`v1.108.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.106.2
-Previous version ---- v1.104.0
+This version -------- v1.108.0
+Previous version ---- v1.106.2
 Initial version ----- v1.96.3
-Total commits ------- 4
+Total commits ------- 2
 ```
+
+## [v1.108.0] - 2026-04-10
+
+### 🆕 Added
+
+- add signature list submission end date
+
+## [v1.107.0] - 2026-04-08
+
+### 🆕 Added
+
+- feat(VOTING-6569): decree delete info endpoint
 
 ## [v1.106.2] - 2026-03-23
 

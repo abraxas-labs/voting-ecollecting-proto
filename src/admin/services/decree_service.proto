@@ -16,6 +16,7 @@ service DecreeService {
   rpc List(requests.ListDecreesRequest) returns (responses.ListDecreesResponse);
   rpc Create(requests.CreateDecreeRequest) returns (responses.CreateDecreeResponse);
   rpc Update(requests.UpdateDecreeRequest) returns (google.protobuf.Empty);
+  rpc GetForDelete(requests.GetDecreeForDeleteRequest) returns (responses.GetDecreeForDeleteResponse);
   rpc DeletePublished(requests.DeletePublishedDecreeRequest) returns (google.protobuf.Empty);
   rpc CameAbout(requests.CameAboutDecreeRequest) returns (google.protobuf.Empty);
   rpc CameNotAbout(requests.CameNotAboutDecreeRequest) returns (google.protobuf.Empty);

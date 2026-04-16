@@ -53,6 +53,10 @@ message SetDecreeSensitiveDataExpiryDateRequest {
   shared.v1.models.Date sensitive_data_expiry_date = 2 [(validation.v1.rules).object.required = true];
 }
 
+message GetDecreeForDeleteRequest {
+  string decree_id = 1 [(validation.v1.rules).string.guid = true];
+}
+
 message PrepareDeleteDecreeRequest {
   string decree_id = 1 [(validation.v1.rules).string.guid = true];
 }

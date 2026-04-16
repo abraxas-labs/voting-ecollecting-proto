@@ -6,12 +6,24 @@ syntax = "proto3";
 package abraxas.voting.ecollecting.admin.services.v1.responses;
 
 import "admin/services/models/decree.proto";
+import "admin/services/models/referendum.proto";
 import "shared/enums/collection_state.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Responses";
 
 message ListDecreesResponse {
   repeated admin.services.v1.models.Decree decrees = 1;
+}
+
+message ReferendumDeleteInfo {
+  admin.services.v1.models.Referendum referendum = 1;
+  string creator_full_name = 2;
+  string creator_email = 3;
+}
+
+message GetDecreeForDeleteResponse {
+  admin.services.v1.models.Decree decree = 1;
+  repeated ReferendumDeleteInfo referendums = 2;
 }
 
 message CreateDecreeResponse {
