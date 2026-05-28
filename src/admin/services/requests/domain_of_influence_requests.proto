@@ -30,8 +30,8 @@ message UpdateDomainOfInfluenceRequest {
   string street = 3 [(validation.v1.rules).string = { max_length: 150, complex_sl_text: true }];
   string zip_code = 4 [(validation.v1.rules).string = { max_length: 15, complex_sl_text: true }];
   string locality = 5 [(validation.v1.rules).string = { max_length: 150, complex_sl_text: true }];
-  string phone = 6 [(validation.v1.rules).string = { allow_empty: true, phone: true }];
-  string email = 7 [(validation.v1.rules).string = { allow_empty: true, email: true }];
+  string phone = 6 [(validation.v1.rules).string.phone = true];
+  string email = 7 [(validation.v1.rules).string.email = true];
   repeated string notification_emails = 8 [(validation.v1.rules).string = { allow_empty: true, email: true }];
   string webpage = 9 [(validation.v1.rules).string = { allow_empty: true, max_length: 10000, complex_sl_text: true }];
   UpdateDomainOfInfluenceSettings settings = 10;

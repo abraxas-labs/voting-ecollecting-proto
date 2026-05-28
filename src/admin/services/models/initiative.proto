@@ -37,6 +37,7 @@ message Initiative {
   admin.services.v1.models.InitiativeLockedFields locked_fields = 11;
   shared.v1.models.Date sensitive_data_expiry_date = 12;
   string domain_of_influence_name = 13;
+  bool electronic_collection_enabled = 14;
 }
 
 message InitiativeSubType {

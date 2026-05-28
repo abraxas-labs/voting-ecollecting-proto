@@ -33,6 +33,7 @@ message Decree {
   shared.v1.enums.CollectionCameNotAboutReason came_not_about_reason = 15;
   shared.v1.models.Date sensitive_data_expiry_date = 16;
   string domain_of_influence_name = 17;
+  bool electronic_collection_enabled = 18;
 }
 
 message DecreeGroup {

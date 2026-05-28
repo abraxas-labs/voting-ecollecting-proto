@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.108.0`)
+# ✨ Changelog (`v1.110.1`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.108.0
-Previous version ---- v1.106.2
+This version -------- v1.110.1
+Previous version ---- v1.108.0
 Initial version ----- v1.96.3
-Total commits ------- 2
+Total commits ------- 4
 ```
+
+## [v1.110.1] - 2026-05-13
+
+### 🔄 Changed
+
+- email and phone required for update doi settings
+
+## [v1.110.0] - 2026-04-30
+
+### 🆕 Added
+
+- feat(VOTING-7073): add electronic_collection_enabled to admin SimpleDecree
+
+## [v1.109.1] - 2026-04-27
+
+### 🆕 Added
+
+- add node and dotnet image tags for ci-pipeline
+
+## [v1.109.0] - 2026-04-20
+
+### 🆕 Added
+
+- feat(VOTING-7073): electronic collection enabled flag
 
 ## [v1.108.0] - 2026-04-10
 

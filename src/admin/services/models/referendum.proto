@@ -21,4 +21,5 @@ message SimpleDecree {
   string description = 2;
   int32 min_signature_count = 3;
   int32 max_electronic_signature_count = 4;
+  bool electronic_collection_enabled = 5;
 }
