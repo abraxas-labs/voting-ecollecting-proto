@@ -1,0 +1,15 @@
+// (c) Copyright by Abraxas Informatik AG
+// For license information see LICENSE file
+
+syntax = "proto3";
+
+package abraxas.voting.ecollecting.admin.services.v1.requests;
+
+import "rules/rules.proto";
+
+option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Requests";
+
+message SecondFactorAuthorization {
+  string second_factor_transaction_id = 1 [(validation.v1.rules).string.guid = true];
+  string otp_code = 2 [(validation.v1.rules).string = { min_length: 6, max_length: 6, allow_empty: true }];
+}

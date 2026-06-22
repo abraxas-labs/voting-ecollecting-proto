@@ -7,8 +7,19 @@ package abraxas.voting.ecollecting.admin.services.v1.models;
 
 option csharp_namespace = "Voting.ECollecting.Proto.Admin.Services.V1.Models";
 
+enum SecondFactorTransactionProvider {
+  SECOND_FACTOR_TRANSACTION_PROVIDER_UNSPECIFIED = 0;
+  SECOND_FACTOR_TRANSACTION_PROVIDER_NEVIS = 1;
+  SECOND_FACTOR_TRANSACTION_PROVIDER_OTP = 2;
+}
+
 message SecondFactorTransaction {
   string id = 1;
-  string correlation_code = 2;
-  string qr_code = 3;
+  repeated SecondFactorTransactionProvider available_providers = 2;
+  SecondFactorTransactionNevisInfo nevis = 3;
+}
+
+message SecondFactorTransactionNevisInfo {
+  string correlation_code = 1;
+  string qr_code = 2;
 }

@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.110.1`)
+# ✨ Changelog (`v1.111.0`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.110.1
-Previous version ---- v1.108.0
+This version -------- v1.111.0
+Previous version ---- v1.110.1
 Initial version ----- v1.96.3
-Total commits ------- 4
+Total commits ------- 2
 ```
+
+## [v1.111.0] - 2026-06-15
+
+### 🆕 Added
+
+- otp 2fa
+
+## [v1.110.2] - 2026-06-01
+
+### 🔄 Changed
+
+- extend simple decree
 
 ## [v1.110.1] - 2026-05-13
 

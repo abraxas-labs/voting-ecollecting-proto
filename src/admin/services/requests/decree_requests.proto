@@ -5,6 +5,7 @@ syntax = "proto3";
 
 package abraxas.voting.ecollecting.admin.services.v1.requests;
 
+import "admin/services/requests/second_factor_authorization.proto";
 import "rules/rules.proto";
 import "shared/enums/collection_came_not_about_reason.proto";
 import "shared/enums/domain_of_influence.proto";
@@ -63,5 +64,5 @@ message PrepareDeleteDecreeRequest {
 
 message DeleteDecreeRequest {
   string decree_id = 1 [(validation.v1.rules).string.guid = true];
-  string second_factor_transaction_id = 2 [(validation.v1.rules).string = { guid: true }];
+  SecondFactorAuthorization second_factor_authorization = 2;
 }

@@ -8,6 +8,7 @@ package abraxas.voting.ecollecting.citizen.services.v1.models;
 import "citizen/services/models/collection.proto";
 import "shared/enums/collection_came_not_about_reason.proto";
 import "shared/enums/collection_state.proto";
+import "shared/models/date.proto";
 
 option csharp_namespace = "Voting.ECollecting.Proto.Citizen.Services.V1.Models";
 
@@ -29,4 +30,7 @@ message SimpleDecree {
   shared.v1.enums.CollectionPeriodState period_state = 3;
   int32 max_electronic_signature_count = 4;
   shared.v1.enums.CollectionCameNotAboutReason came_not_about_reason = 5;
+  shared.v1.models.Date collection_start_date = 6;
+  shared.v1.models.Date collection_end_date = 7;
+  shared.v1.models.Date signature_list_submission_end_date = 8;
 }

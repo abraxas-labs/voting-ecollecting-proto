@@ -7,6 +7,7 @@ package abraxas.voting.ecollecting.admin.services.v1.requests;
 
 import "admin/services/models/collection.proto";
 import "admin/services/models/initiative.proto";
+import "admin/services/requests/second_factor_authorization.proto";
 import "rules/rules.proto";
 import "shared/enums/collection_came_not_about_reason.proto";
 import "shared/enums/collection_state.proto";
@@ -144,5 +145,5 @@ message PrepareDeleteInitiativeRequest {
 
 message DeleteInitiativeRequest {
   string initiative_id = 1 [(validation.v1.rules).string.guid = true];
-  string second_factor_transaction_id = 2 [(validation.v1.rules).string = { guid: true }];
+  SecondFactorAuthorization second_factor_authorization = 2;
 }
