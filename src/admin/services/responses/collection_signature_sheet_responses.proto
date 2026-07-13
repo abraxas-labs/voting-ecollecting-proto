@@ -7,7 +7,6 @@ package abraxas.voting.ecollecting.admin.services.v1.responses;
 
 import "admin/services/models/collection_count.proto";
 import "admin/services/models/collection_signature_sheet.proto";
-import "admin/services/models/person.proto";
 import "google/protobuf/timestamp.proto";
 import "shared/models/page.proto";
 
@@ -34,7 +33,7 @@ message SearchSignatureSheetPersonCandidatesResponse {
 }
 
 message ListSignatureSheetCitizensResponse {
-  repeated models.Person citizens = 1;
+  repeated models.CollectionSignatureSheetCitizen citizens = 1;
 }
 
 message SubmitSignatureSheetResponse {

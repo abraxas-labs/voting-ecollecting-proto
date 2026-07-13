@@ -47,4 +47,5 @@ message DecreeUserPermissions {
   bool can_generate_documents = 3;
   bool can_add_collection = 4;
   bool can_delete = 5;
+  bool can_delete_expired = 6;
 }

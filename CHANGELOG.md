@@ -1,4 +1,4 @@
-# ✨ Changelog (`v1.111.0`)
+# ✨ Changelog (`v1.113.2`)
 
 All notable changes to this project will be documented in this file.
 
@@ -8,11 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version Info
 
 ```text
-This version -------- v1.111.0
-Previous version ---- v1.110.1
+This version -------- v1.113.2
+Previous version ---- v1.111.0
 Initial version ----- v1.96.3
-Total commits ------- 2
+Total commits ------- 4
 ```
+
+## [v1.113.2] - 2026-07-07
+
+### 🆕 Added
+
+- add collection signature sheet citizen
+
+## [v1.113.1] - 2026-06-30
+
+### 🆕 Added
+
+- delete expired decree
+
+## [v1.113.0] - 2026-06-24
+
+### 🔄 Changed
+
+- add 2FA-protected domain of influence signature settings
+
+## [v1.112.0] - 2026-06-23
+
+### 🆕 Added
+
+- signature cache etag
 
 ## [v1.111.0] - 2026-06-15
 

@@ -6,6 +6,7 @@ syntax = "proto3";
 package abraxas.voting.ecollecting.admin.services.v1;
 
 import "admin/services/models/domain_of_influence.proto";
+import "admin/services/models/second_factor_transaction.proto";
 import "admin/services/requests/domain_of_influence_requests.proto";
 import "admin/services/responses/domain_of_influences_responses.proto";
 import "google/protobuf/empty.proto";
@@ -21,4 +22,9 @@ service DomainOfInfluenceService {
   rpc Update(requests.UpdateDomainOfInfluenceRequest) returns (google.protobuf.Empty);
   rpc RemoveLogo(requests.RemoveDomainOfInfluenceLogoRequest) returns (google.protobuf.Empty);
   rpc Get(requests.GetDomainOfInfluenceRequest) returns (admin.services.v1.models.DomainOfInfluence);
+
+  // The signature counts and electronic signature thresholds are quorum relevant and
+  // therefore require a confirmed second factor authorization before they can be changed.
+  rpc PrepareUpdateCollectionSettings(requests.PrepareUpdateDomainOfInfluenceCollectionSettingsRequest) returns (models.SecondFactorTransaction);
+  rpc UpdateCollectionSettings(requests.UpdateDomainOfInfluenceCollectionSettingsRequest) returns (google.protobuf.Empty);
 }

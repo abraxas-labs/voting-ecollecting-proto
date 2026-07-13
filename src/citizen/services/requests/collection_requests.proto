@@ -17,6 +17,9 @@ message ListCollectionsRequest {
   repeated shared.v1.enums.DomainOfInfluenceType types = 1 [(validation.v1.rules).enum.exact_enum = true];
   string bfs = 2 [(validation.v1.rules).string = { min_length: 1, max_length: 8, alpha_num_white: true, allow_empty: true }];
   shared.v1.enums.CollectionPeriodState period_state = 3 [(validation.v1.rules).enum = { allow_unspecified: true, exact_enum: true }];
+
+  // Only resolve the signature info if the etag does not match.
+  string signature_info_if_none_match_etag = 4 [(validation.v1.rules).string = { allow_empty: true, max_length: 128 }];
 }
 
 message ListCollectionPermissionsRequest {

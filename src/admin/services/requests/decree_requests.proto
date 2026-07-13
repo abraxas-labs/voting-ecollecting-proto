@@ -38,6 +38,10 @@ message DeletePublishedDecreeRequest {
   string id = 1 [(validation.v1.rules).string.guid = true];
 }
 
+message DeleteExpiredDecreeRequest {
+  string id = 1 [(validation.v1.rules).string.guid = true];
+}
+
 message CameAboutDecreeRequest {
   string decree_id = 1 [(validation.v1.rules).string.guid = true];
   shared.v1.models.Date sensitive_data_expiry_date = 2 [(validation.v1.rules).object.required = true];
