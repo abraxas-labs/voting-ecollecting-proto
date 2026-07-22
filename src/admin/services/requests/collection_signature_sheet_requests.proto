@@ -96,7 +96,7 @@ message SearchSignatureSheetPersonCandidatesRequest {
   string collection_id = 3 [(validation.v1.rules).string.guid = true];
   string signature_sheet_id = 4 [(validation.v1.rules).string.guid = true];
   string official_name = 5 [(validation.v1.rules).string = { min_length: 2, max_length: 100, allow_empty: true, complex_sl_text: true }];
-  string first_name = 6 [(validation.v1.rules).string = { min_length: 2, max_length: 100, allow_empty: true, complex_sl_text: true }];
+  string first_name_or_call_name = 6 [(validation.v1.rules).string = { min_length: 2, max_length: 100, allow_empty: true, complex_sl_text: true }];
   google.protobuf.Timestamp date_of_birth = 7;
   string residence_address_street = 8 [(validation.v1.rules).string = { min_length: 2, max_length: 150, allow_empty: true, complex_sl_text: true }];
   string residence_address_house_number = 9 [(validation.v1.rules).string = { max_length: 150, allow_empty: true, complex_sl_text: true }];
